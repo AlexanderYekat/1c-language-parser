@@ -164,6 +164,11 @@ type GoToLabelStatement struct {
 	Name string
 }
 
+type BuiltinFunctionStatement struct {
+	Name  string
+	Param []Statement
+}
+
 func (p *ParamStatement) Fill(valueParam *Token, identifier Token) *ParamStatement {
 	p.IsValue = valueParam != nil
 	p.Name = identifier.literal
@@ -341,6 +346,8 @@ func walkHelper(parent *FunctionOrProcedure, statements []Statement, callBack fu
 			walkHelper(parent, []Statement{v.ElseBlock}, callBack)
 		case *ReturnStatement:
 			walkHelper(parent, []Statement{v.Param}, callBack)
+		case BuiltinFunctionStatement:
+			walkHelper(parent, v.Param, callBack)
 		}
 
 		callBack(parent, &statements[i])

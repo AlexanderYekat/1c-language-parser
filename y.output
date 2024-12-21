@@ -1,0 +1,3577 @@
+
+state 0
+	$accept: .module $end 
+	opt_body: .    (15)
+	opt_directive: .    (7)
+
+	':'  reduce 15 (src line 151)
+	';'  reduce 15 (src line 151)
+	Directive  shift 39
+	Identifier  shift 43
+	If  shift 22
+	For  shift 23
+	Break  shift 12
+	Not  shift 19
+	While  shift 24
+	GoToLabel  shift 40
+	Continue  shift 11
+	Try  shift 25
+	Number  shift 28
+	String  shift 27
+	New  shift 38
+	Return  shift 14
+	Throw  shift 13
+	True  shift 31
+	False  shift 32
+	Undefind  shift 34
+	Date  shift 33
+	GoTo  shift 21
+	Execute  shift 44
+	BuiltinFunction  shift 45
+	'+'  shift 30
+	'-'  shift 29
+	'('  shift 18
+	'?'  shift 42
+	.  reduce 7 (src line 119)
+
+	body  goto 2
+	opt_body  goto 5
+	stmt  goto 4
+	stmt_loop  goto 9
+	funcProc  goto 16
+	stmt_if  goto 8
+	expr  goto 7
+	opt_directive  goto 26
+	simple_expr  goto 17
+	through_dot  goto 36
+	new_object  goto 20
+	ternary  goto 37
+	stmt_tryCatch  goto 10
+	identifier  goto 41
+	goToLabel  goto 35
+	global_variables  goto 15
+	module  goto 1
+	main_items  goto 3
+	main  goto 6
+
+state 1
+	$accept:  module.$end 
+
+	$end  accept
+	.  error
+
+
+state 2
+	module:  body.    (1)
+	opt_body:  body.    (16)
+
+	$end  reduce 1 (src line 92)
+	.  reduce 16 (src line 152)
+
+
+state 3
+	module:  main_items.opt_body 
+	main_items:  main_items.main 
+	opt_body: .    (15)
+	opt_directive: .    (7)
+
+	Directive  shift 39
+	Identifier  shift 43
+	Procedure  reduce 7 (src line 119)
+	Var  reduce 7 (src line 119)
+	If  shift 22
+	For  shift 23
+	Break  shift 12
+	Not  shift 19
+	While  shift 24
+	GoToLabel  shift 40
+	Continue  shift 11
+	Try  shift 25
+	Number  shift 28
+	String  shift 27
+	New  shift 38
+	Function  reduce 7 (src line 119)
+	Return  shift 14
+	Throw  shift 13
+	True  shift 31
+	False  shift 32
+	Undefind  shift 34
+	Date  shift 33
+	GoTo  shift 21
+	Execute  shift 44
+	BuiltinFunction  shift 45
+	'+'  shift 30
+	'-'  shift 29
+	'('  shift 18
+	'?'  shift 42
+	.  reduce 15 (src line 151)
+
+	body  goto 48
+	opt_body  goto 46
+	stmt  goto 4
+	stmt_loop  goto 9
+	funcProc  goto 16
+	stmt_if  goto 8
+	expr  goto 7
+	opt_directive  goto 26
+	simple_expr  goto 17
+	through_dot  goto 36
+	new_object  goto 20
+	ternary  goto 37
+	stmt_tryCatch  goto 10
+	identifier  goto 41
+	goToLabel  goto 35
+	global_variables  goto 15
+	main  goto 47
+
+state 4
+	body:  stmt.    (17)
+
+	.  reduce 17 (src line 156)
+
+
+state 5
+	body:  opt_body.separator opt_stmt 
+
+	':'  shift 53
+	';'  shift 52
+	.  error
+
+	separator  goto 49
+	semicolon  goto 50
+	colon  goto 51
+
+state 6
+	main_items:  main.    (3)
+
+	.  reduce 3 (src line 103)
+
+
+state 7
+	stmt:  expr.    (42)
+	expr:  expr.'+' expr 
+	expr:  expr.'-' expr 
+	expr:  expr.'*' expr 
+	expr:  expr.'/' expr 
+	expr:  expr.'%' expr 
+	expr:  expr.'>' expr 
+	expr:  expr.'<' expr 
+	expr:  expr.'=' expr 
+	expr:  expr.Or expr 
+	expr:  expr.And expr 
+	expr:  expr.NeEq expr 
+	expr:  expr.Le expr 
+	expr:  expr.Ge expr 
+
+	NeEq  shift 64
+	Le  shift 65
+	Ge  shift 66
+	Or  shift 62
+	And  shift 63
+	'='  shift 61
+	'>'  shift 59
+	'<'  shift 60
+	'+'  shift 54
+	'-'  shift 55
+	'*'  shift 56
+	'/'  shift 57
+	'%'  shift 58
+	.  reduce 42 (src line 262)
+
+
+state 8
+	stmt:  stmt_if.    (43)
+
+	.  reduce 43 (src line 263)
+
+
+state 9
+	stmt:  stmt_loop.    (44)
+
+	.  reduce 44 (src line 264)
+
+
+state 10
+	stmt:  stmt_tryCatch.    (45)
+
+	.  reduce 45 (src line 265)
+
+
+state 11
+	stmt:  Continue.    (46)
+
+	.  reduce 46 (src line 266)
+
+
+state 12
+	stmt:  Break.    (47)
+
+	.  reduce 47 (src line 267)
+
+
+state 13
+	stmt:  Throw.opt_param 
+	opt_param: .    (50)
+
+	Identifier  shift 43
+	Not  shift 19
+	GoToLabel  shift 40
+	Number  shift 28
+	String  shift 27
+	New  shift 38
+	True  shift 31
+	False  shift 32
+	Undefind  shift 34
+	Date  shift 33
+	GoTo  shift 21
+	Execute  shift 44
+	BuiltinFunction  shift 45
+	'+'  shift 30
+	'-'  shift 29
+	'('  shift 18
+	'?'  shift 42
+	.  reduce 50 (src line 272)
+
+	opt_param  goto 67
+	expr  goto 68
+	simple_expr  goto 17
+	through_dot  goto 36
+	new_object  goto 20
+	ternary  goto 37
+	identifier  goto 41
+	goToLabel  goto 35
+
+state 14
+	stmt:  Return.opt_expr 
+	opt_expr: .    (82)
+
+	Identifier  shift 43
+	Not  shift 19
+	GoToLabel  shift 40
+	Number  shift 28
+	String  shift 27
+	New  shift 38
+	True  shift 31
+	False  shift 32
+	Undefind  shift 34
+	Date  shift 33
+	GoTo  shift 21
+	Execute  shift 44
+	BuiltinFunction  shift 45
+	'+'  shift 30
+	'-'  shift 29
+	'('  shift 18
+	'?'  shift 42
+	.  reduce 82 (src line 323)
+
+	expr  goto 70
+	simple_expr  goto 17
+	opt_expr  goto 69
+	through_dot  goto 36
+	new_object  goto 20
+	ternary  goto 37
+	identifier  goto 41
+	goToLabel  goto 35
+
+state 15
+	main:  global_variables.    (5)
+
+	.  reduce 5 (src line 107)
+
+
+state 16
+	main:  funcProc.    (6)
+
+	.  reduce 6 (src line 112)
+
+
+state 17
+	expr:  simple_expr.    (64)
+
+	.  reduce 64 (src line 303)
+
+
+state 18
+	expr:  '('.expr ')' 
+
+	Identifier  shift 43
+	Not  shift 19
+	GoToLabel  shift 40
+	Number  shift 28
+	String  shift 27
+	New  shift 38
+	True  shift 31
+	False  shift 32
+	Undefind  shift 34
+	Date  shift 33
+	GoTo  shift 21
+	Execute  shift 44
+	BuiltinFunction  shift 45
+	'+'  shift 30
+	'-'  shift 29
+	'('  shift 18
+	'?'  shift 42
+	.  error
+
+	expr  goto 71
+	simple_expr  goto 17
+	through_dot  goto 36
+	new_object  goto 20
+	ternary  goto 37
+	identifier  goto 41
+	goToLabel  goto 35
+
+state 19
+	expr:  Not.expr 
+
+	Identifier  shift 43
+	Not  shift 19
+	GoToLabel  shift 40
+	Number  shift 28
+	String  shift 27
+	New  shift 38
+	True  shift 31
+	False  shift 32
+	Undefind  shift 34
+	Date  shift 33
+	GoTo  shift 21
+	Execute  shift 44
+	BuiltinFunction  shift 45
+	'+'  shift 30
+	'-'  shift 29
+	'('  shift 18
+	'?'  shift 42
+	.  error
+
+	expr  goto 72
+	simple_expr  goto 17
+	through_dot  goto 36
+	new_object  goto 20
+	ternary  goto 37
+	identifier  goto 41
+	goToLabel  goto 35
+
+state 20
+	expr:  new_object.    (80)
+
+	.  reduce 80 (src line 319)
+
+
+state 21
+	expr:  GoTo.goToLabel 
+
+	GoToLabel  shift 40
+	.  error
+
+	goToLabel  goto 73
+
+state 22
+	stmt_if:  If.expr Then opt_body opt_elseif_list opt_else EndIf 
+
+	Identifier  shift 43
+	Not  shift 19
+	GoToLabel  shift 40
+	Number  shift 28
+	String  shift 27
+	New  shift 38
+	True  shift 31
+	False  shift 32
+	Undefind  shift 34
+	Date  shift 33
+	GoTo  shift 21
+	Execute  shift 44
+	BuiltinFunction  shift 45
+	'+'  shift 30
+	'-'  shift 29
+	'('  shift 18
+	'?'  shift 42
+	.  error
+
+	expr  goto 74
+	simple_expr  goto 17
+	through_dot  goto 36
+	new_object  goto 20
+	ternary  goto 37
+	identifier  goto 41
+	goToLabel  goto 35
+
+state 23
+	stmt_loop:  For.Each Identifier In loopExp Loop $$33 opt_body EndLoop 
+	stmt_loop:  For.expr To expr Loop $$35 opt_body EndLoop 
+
+	Identifier  shift 43
+	Each  shift 75
+	Not  shift 19
+	GoToLabel  shift 40
+	Number  shift 28
+	String  shift 27
+	New  shift 38
+	True  shift 31
+	False  shift 32
+	Undefind  shift 34
+	Date  shift 33
+	GoTo  shift 21
+	Execute  shift 44
+	BuiltinFunction  shift 45
+	'+'  shift 30
+	'-'  shift 29
+	'('  shift 18
+	'?'  shift 42
+	.  error
+
+	expr  goto 76
+	simple_expr  goto 17
+	through_dot  goto 36
+	new_object  goto 20
+	ternary  goto 37
+	identifier  goto 41
+	goToLabel  goto 35
+
+state 24
+	stmt_loop:  While.expr Loop $$37 opt_body EndLoop 
+
+	Identifier  shift 43
+	Not  shift 19
+	GoToLabel  shift 40
+	Number  shift 28
+	String  shift 27
+	New  shift 38
+	True  shift 31
+	False  shift 32
+	Undefind  shift 34
+	Date  shift 33
+	GoTo  shift 21
+	Execute  shift 44
+	BuiltinFunction  shift 45
+	'+'  shift 30
+	'-'  shift 29
+	'('  shift 18
+	'?'  shift 42
+	.  error
+
+	expr  goto 77
+	simple_expr  goto 17
+	through_dot  goto 36
+	new_object  goto 20
+	ternary  goto 37
+	identifier  goto 41
+	goToLabel  goto 35
+
+state 25
+	stmt_tryCatch:  Try.opt_body Catch $$62 opt_body EndTry 
+	opt_body: .    (15)
+
+	Identifier  shift 43
+	If  shift 22
+	For  shift 23
+	Break  shift 12
+	Not  shift 19
+	While  shift 24
+	GoToLabel  shift 40
+	Continue  shift 11
+	Try  shift 25
+	Number  shift 28
+	String  shift 27
+	New  shift 38
+	Return  shift 14
+	Throw  shift 13
+	True  shift 31
+	False  shift 32
+	Undefind  shift 34
+	Date  shift 33
+	GoTo  shift 21
+	Execute  shift 44
+	BuiltinFunction  shift 45
+	'+'  shift 30
+	'-'  shift 29
+	'('  shift 18
+	'?'  shift 42
+	.  reduce 15 (src line 151)
+
+	body  goto 48
+	opt_body  goto 78
+	stmt  goto 4
+	stmt_loop  goto 9
+	stmt_if  goto 8
+	expr  goto 7
+	simple_expr  goto 17
+	through_dot  goto 36
+	new_object  goto 20
+	ternary  goto 37
+	stmt_tryCatch  goto 10
+	identifier  goto 41
+	goToLabel  goto 35
+
+state 26
+	global_variables:  opt_directive.Var identifiers opt_export semicolon 
+	funcProc:  opt_directive.Function Identifier '(' declarations_method_params ')' opt_export $$12 opt_explicit_variables opt_body EndFunction 
+	funcProc:  opt_directive.Procedure Identifier '(' declarations_method_params ')' opt_export opt_explicit_variables opt_body EndProcedure 
+
+	Procedure  shift 81
+	Var  shift 79
+	Function  shift 80
+	.  error
+
+
+state 27
+	simple_expr:  String.    (93)
+
+	.  reduce 93 (src line 346)
+
+
+state 28
+	simple_expr:  Number.    (94)
+
+	.  reduce 94 (src line 347)
+
+
+state 29
+	simple_expr:  '-'.expr 
+
+	Identifier  shift 43
+	Not  shift 19
+	GoToLabel  shift 40
+	Number  shift 28
+	String  shift 27
+	New  shift 38
+	True  shift 31
+	False  shift 32
+	Undefind  shift 34
+	Date  shift 33
+	GoTo  shift 21
+	Execute  shift 44
+	BuiltinFunction  shift 45
+	'+'  shift 30
+	'-'  shift 29
+	'('  shift 18
+	'?'  shift 42
+	.  error
+
+	expr  goto 82
+	simple_expr  goto 17
+	through_dot  goto 36
+	new_object  goto 20
+	ternary  goto 37
+	identifier  goto 41
+	goToLabel  goto 35
+
+state 30
+	simple_expr:  '+'.expr 
+
+	Identifier  shift 43
+	Not  shift 19
+	GoToLabel  shift 40
+	Number  shift 28
+	String  shift 27
+	New  shift 38
+	True  shift 31
+	False  shift 32
+	Undefind  shift 34
+	Date  shift 33
+	GoTo  shift 21
+	Execute  shift 44
+	BuiltinFunction  shift 45
+	'+'  shift 30
+	'-'  shift 29
+	'('  shift 18
+	'?'  shift 42
+	.  error
+
+	expr  goto 83
+	simple_expr  goto 17
+	through_dot  goto 36
+	new_object  goto 20
+	ternary  goto 37
+	identifier  goto 41
+	goToLabel  goto 35
+
+state 31
+	simple_expr:  True.    (97)
+
+	.  reduce 97 (src line 350)
+
+
+state 32
+	simple_expr:  False.    (98)
+
+	.  reduce 98 (src line 351)
+
+
+state 33
+	simple_expr:  Date.    (99)
+
+	.  reduce 99 (src line 352)
+
+
+state 34
+	simple_expr:  Undefind.    (100)
+
+	.  reduce 100 (src line 353)
+
+
+state 35
+	simple_expr:  goToLabel.    (101)
+
+	.  reduce 101 (src line 354)
+
+
+state 36
+	through_dot:  through_dot.dot identifier 
+	simple_expr:  through_dot.    (102)
+
+	'.'  shift 85
+	.  reduce 102 (src line 355)
+
+	dot  goto 84
+
+state 37
+	simple_expr:  ternary.    (103)
+
+	.  reduce 103 (src line 362)
+
+
+state 38
+	new_object:  New.Identifier 
+	new_object:  New.Identifier '(' exprs ')' 
+	new_object:  New.'(' exprs ')' 
+
+	Identifier  shift 86
+	'('  shift 87
+	.  error
+
+
+state 39
+	opt_directive:  Directive.    (8)
+
+	.  reduce 8 (src line 120)
+
+
+state 40
+	goToLabel:  GoToLabel.    (104)
+
+	.  reduce 104 (src line 365)
+
+
+state 41
+	through_dot:  identifier.    (52)
+	identifier:  identifier.'[' expr ']' 
+
+	'['  shift 88
+	.  reduce 52 (src line 278)
+
+
+state 42
+	ternary:  '?'.'(' expr comma expr comma expr ')' 
+
+	'('  shift 89
+	.  error
+
+
+state 43
+	identifier:  Identifier.    (54)
+	identifier:  Identifier.'(' exprs ')' 
+
+	'('  shift 90
+	.  reduce 54 (src line 285)
+
+
+state 44
+	identifier:  Execute.execute_param 
+	identifier:  Execute.'(' expr ')' 
+
+	Identifier  shift 94
+	String  shift 93
+	'('  shift 92
+	.  error
+
+	execute_param  goto 91
+
+state 45
+	identifier:  BuiltinFunction.'(' exprs ')' 
+
+	'('  shift 95
+	.  error
+
+
+state 46
+	module:  main_items opt_body.    (2)
+	body:  opt_body.separator opt_stmt 
+
+	':'  shift 53
+	';'  shift 52
+	.  reduce 2 (src line 97)
+
+	separator  goto 49
+	semicolon  goto 50
+	colon  goto 51
+
+state 47
+	main_items:  main_items main.    (4)
+
+	.  reduce 4 (src line 104)
+
+
+state 48
+	opt_body:  body.    (16)
+
+	.  reduce 16 (src line 152)
+
+
+state 49
+	body:  opt_body separator.opt_stmt 
+	opt_stmt: .    (19)
+
+	Identifier  shift 43
+	If  shift 22
+	For  shift 23
+	Break  shift 12
+	Not  shift 19
+	While  shift 24
+	GoToLabel  shift 40
+	Continue  shift 11
+	Try  shift 25
+	Number  shift 28
+	String  shift 27
+	New  shift 38
+	Return  shift 14
+	Throw  shift 13
+	True  shift 31
+	False  shift 32
+	Undefind  shift 34
+	Date  shift 33
+	GoTo  shift 21
+	Execute  shift 44
+	BuiltinFunction  shift 45
+	'+'  shift 30
+	'-'  shift 29
+	'('  shift 18
+	'?'  shift 42
+	.  reduce 19 (src line 170)
+
+	stmt  goto 97
+	stmt_loop  goto 9
+	stmt_if  goto 8
+	opt_stmt  goto 96
+	expr  goto 7
+	simple_expr  goto 17
+	through_dot  goto 36
+	new_object  goto 20
+	ternary  goto 37
+	stmt_tryCatch  goto 10
+	identifier  goto 41
+	goToLabel  goto 35
+
+state 50
+	separator:  semicolon.    (21)
+
+	.  reduce 21 (src line 174)
+
+
+state 51
+	separator:  colon.    (22)
+
+	.  reduce 22 (src line 174)
+
+
+state 52
+	semicolon:  ';'.    (109)
+
+	.  reduce 109 (src line 375)
+
+
+state 53
+	colon:  ':'.    (110)
+
+	.  reduce 110 (src line 376)
+
+
+state 54
+	expr:  expr '+'.expr 
+
+	Identifier  shift 43
+	Not  shift 19
+	GoToLabel  shift 40
+	Number  shift 28
+	String  shift 27
+	New  shift 38
+	True  shift 31
+	False  shift 32
+	Undefind  shift 34
+	Date  shift 33
+	GoTo  shift 21
+	Execute  shift 44
+	BuiltinFunction  shift 45
+	'+'  shift 30
+	'-'  shift 29
+	'('  shift 18
+	'?'  shift 42
+	.  error
+
+	expr  goto 98
+	simple_expr  goto 17
+	through_dot  goto 36
+	new_object  goto 20
+	ternary  goto 37
+	identifier  goto 41
+	goToLabel  goto 35
+
+state 55
+	expr:  expr '-'.expr 
+
+	Identifier  shift 43
+	Not  shift 19
+	GoToLabel  shift 40
+	Number  shift 28
+	String  shift 27
+	New  shift 38
+	True  shift 31
+	False  shift 32
+	Undefind  shift 34
+	Date  shift 33
+	GoTo  shift 21
+	Execute  shift 44
+	BuiltinFunction  shift 45
+	'+'  shift 30
+	'-'  shift 29
+	'('  shift 18
+	'?'  shift 42
+	.  error
+
+	expr  goto 99
+	simple_expr  goto 17
+	through_dot  goto 36
+	new_object  goto 20
+	ternary  goto 37
+	identifier  goto 41
+	goToLabel  goto 35
+
+state 56
+	expr:  expr '*'.expr 
+
+	Identifier  shift 43
+	Not  shift 19
+	GoToLabel  shift 40
+	Number  shift 28
+	String  shift 27
+	New  shift 38
+	True  shift 31
+	False  shift 32
+	Undefind  shift 34
+	Date  shift 33
+	GoTo  shift 21
+	Execute  shift 44
+	BuiltinFunction  shift 45
+	'+'  shift 30
+	'-'  shift 29
+	'('  shift 18
+	'?'  shift 42
+	.  error
+
+	expr  goto 100
+	simple_expr  goto 17
+	through_dot  goto 36
+	new_object  goto 20
+	ternary  goto 37
+	identifier  goto 41
+	goToLabel  goto 35
+
+state 57
+	expr:  expr '/'.expr 
+
+	Identifier  shift 43
+	Not  shift 19
+	GoToLabel  shift 40
+	Number  shift 28
+	String  shift 27
+	New  shift 38
+	True  shift 31
+	False  shift 32
+	Undefind  shift 34
+	Date  shift 33
+	GoTo  shift 21
+	Execute  shift 44
+	BuiltinFunction  shift 45
+	'+'  shift 30
+	'-'  shift 29
+	'('  shift 18
+	'?'  shift 42
+	.  error
+
+	expr  goto 101
+	simple_expr  goto 17
+	through_dot  goto 36
+	new_object  goto 20
+	ternary  goto 37
+	identifier  goto 41
+	goToLabel  goto 35
+
+state 58
+	expr:  expr '%'.expr 
+
+	Identifier  shift 43
+	Not  shift 19
+	GoToLabel  shift 40
+	Number  shift 28
+	String  shift 27
+	New  shift 38
+	True  shift 31
+	False  shift 32
+	Undefind  shift 34
+	Date  shift 33
+	GoTo  shift 21
+	Execute  shift 44
+	BuiltinFunction  shift 45
+	'+'  shift 30
+	'-'  shift 29
+	'('  shift 18
+	'?'  shift 42
+	.  error
+
+	expr  goto 102
+	simple_expr  goto 17
+	through_dot  goto 36
+	new_object  goto 20
+	ternary  goto 37
+	identifier  goto 41
+	goToLabel  goto 35
+
+state 59
+	expr:  expr '>'.expr 
+
+	Identifier  shift 43
+	Not  shift 19
+	GoToLabel  shift 40
+	Number  shift 28
+	String  shift 27
+	New  shift 38
+	True  shift 31
+	False  shift 32
+	Undefind  shift 34
+	Date  shift 33
+	GoTo  shift 21
+	Execute  shift 44
+	BuiltinFunction  shift 45
+	'+'  shift 30
+	'-'  shift 29
+	'('  shift 18
+	'?'  shift 42
+	.  error
+
+	expr  goto 103
+	simple_expr  goto 17
+	through_dot  goto 36
+	new_object  goto 20
+	ternary  goto 37
+	identifier  goto 41
+	goToLabel  goto 35
+
+state 60
+	expr:  expr '<'.expr 
+
+	Identifier  shift 43
+	Not  shift 19
+	GoToLabel  shift 40
+	Number  shift 28
+	String  shift 27
+	New  shift 38
+	True  shift 31
+	False  shift 32
+	Undefind  shift 34
+	Date  shift 33
+	GoTo  shift 21
+	Execute  shift 44
+	BuiltinFunction  shift 45
+	'+'  shift 30
+	'-'  shift 29
+	'('  shift 18
+	'?'  shift 42
+	.  error
+
+	expr  goto 104
+	simple_expr  goto 17
+	through_dot  goto 36
+	new_object  goto 20
+	ternary  goto 37
+	identifier  goto 41
+	goToLabel  goto 35
+
+state 61
+	expr:  expr '='.expr 
+
+	Identifier  shift 43
+	Not  shift 19
+	GoToLabel  shift 40
+	Number  shift 28
+	String  shift 27
+	New  shift 38
+	True  shift 31
+	False  shift 32
+	Undefind  shift 34
+	Date  shift 33
+	GoTo  shift 21
+	Execute  shift 44
+	BuiltinFunction  shift 45
+	'+'  shift 30
+	'-'  shift 29
+	'('  shift 18
+	'?'  shift 42
+	.  error
+
+	expr  goto 105
+	simple_expr  goto 17
+	through_dot  goto 36
+	new_object  goto 20
+	ternary  goto 37
+	identifier  goto 41
+	goToLabel  goto 35
+
+state 62
+	expr:  expr Or.expr 
+
+	Identifier  shift 43
+	Not  shift 19
+	GoToLabel  shift 40
+	Number  shift 28
+	String  shift 27
+	New  shift 38
+	True  shift 31
+	False  shift 32
+	Undefind  shift 34
+	Date  shift 33
+	GoTo  shift 21
+	Execute  shift 44
+	BuiltinFunction  shift 45
+	'+'  shift 30
+	'-'  shift 29
+	'('  shift 18
+	'?'  shift 42
+	.  error
+
+	expr  goto 106
+	simple_expr  goto 17
+	through_dot  goto 36
+	new_object  goto 20
+	ternary  goto 37
+	identifier  goto 41
+	goToLabel  goto 35
+
+state 63
+	expr:  expr And.expr 
+
+	Identifier  shift 43
+	Not  shift 19
+	GoToLabel  shift 40
+	Number  shift 28
+	String  shift 27
+	New  shift 38
+	True  shift 31
+	False  shift 32
+	Undefind  shift 34
+	Date  shift 33
+	GoTo  shift 21
+	Execute  shift 44
+	BuiltinFunction  shift 45
+	'+'  shift 30
+	'-'  shift 29
+	'('  shift 18
+	'?'  shift 42
+	.  error
+
+	expr  goto 107
+	simple_expr  goto 17
+	through_dot  goto 36
+	new_object  goto 20
+	ternary  goto 37
+	identifier  goto 41
+	goToLabel  goto 35
+
+state 64
+	expr:  expr NeEq.expr 
+
+	Identifier  shift 43
+	Not  shift 19
+	GoToLabel  shift 40
+	Number  shift 28
+	String  shift 27
+	New  shift 38
+	True  shift 31
+	False  shift 32
+	Undefind  shift 34
+	Date  shift 33
+	GoTo  shift 21
+	Execute  shift 44
+	BuiltinFunction  shift 45
+	'+'  shift 30
+	'-'  shift 29
+	'('  shift 18
+	'?'  shift 42
+	.  error
+
+	expr  goto 108
+	simple_expr  goto 17
+	through_dot  goto 36
+	new_object  goto 20
+	ternary  goto 37
+	identifier  goto 41
+	goToLabel  goto 35
+
+state 65
+	expr:  expr Le.expr 
+
+	Identifier  shift 43
+	Not  shift 19
+	GoToLabel  shift 40
+	Number  shift 28
+	String  shift 27
+	New  shift 38
+	True  shift 31
+	False  shift 32
+	Undefind  shift 34
+	Date  shift 33
+	GoTo  shift 21
+	Execute  shift 44
+	BuiltinFunction  shift 45
+	'+'  shift 30
+	'-'  shift 29
+	'('  shift 18
+	'?'  shift 42
+	.  error
+
+	expr  goto 109
+	simple_expr  goto 17
+	through_dot  goto 36
+	new_object  goto 20
+	ternary  goto 37
+	identifier  goto 41
+	goToLabel  goto 35
+
+state 66
+	expr:  expr Ge.expr 
+
+	Identifier  shift 43
+	Not  shift 19
+	GoToLabel  shift 40
+	Number  shift 28
+	String  shift 27
+	New  shift 38
+	True  shift 31
+	False  shift 32
+	Undefind  shift 34
+	Date  shift 33
+	GoTo  shift 21
+	Execute  shift 44
+	BuiltinFunction  shift 45
+	'+'  shift 30
+	'-'  shift 29
+	'('  shift 18
+	'?'  shift 42
+	.  error
+
+	expr  goto 110
+	simple_expr  goto 17
+	through_dot  goto 36
+	new_object  goto 20
+	ternary  goto 37
+	identifier  goto 41
+	goToLabel  goto 35
+
+state 67
+	stmt:  Throw opt_param.    (48)
+
+	.  reduce 48 (src line 268)
+
+
+state 68
+	opt_param:  expr.    (51)
+	expr:  expr.'+' expr 
+	expr:  expr.'-' expr 
+	expr:  expr.'*' expr 
+	expr:  expr.'/' expr 
+	expr:  expr.'%' expr 
+	expr:  expr.'>' expr 
+	expr:  expr.'<' expr 
+	expr:  expr.'=' expr 
+	expr:  expr.Or expr 
+	expr:  expr.And expr 
+	expr:  expr.NeEq expr 
+	expr:  expr.Le expr 
+	expr:  expr.Ge expr 
+
+	NeEq  shift 64
+	Le  shift 65
+	Ge  shift 66
+	Or  shift 62
+	And  shift 63
+	'='  shift 61
+	'>'  shift 59
+	'<'  shift 60
+	'+'  shift 54
+	'-'  shift 55
+	'*'  shift 56
+	'/'  shift 57
+	'%'  shift 58
+	.  reduce 51 (src line 273)
+
+
+state 69
+	stmt:  Return opt_expr.    (49)
+
+	.  reduce 49 (src line 269)
+
+
+state 70
+	expr:  expr.'+' expr 
+	expr:  expr.'-' expr 
+	expr:  expr.'*' expr 
+	expr:  expr.'/' expr 
+	expr:  expr.'%' expr 
+	expr:  expr.'>' expr 
+	expr:  expr.'<' expr 
+	expr:  expr.'=' expr 
+	expr:  expr.Or expr 
+	expr:  expr.And expr 
+	expr:  expr.NeEq expr 
+	expr:  expr.Le expr 
+	expr:  expr.Ge expr 
+	opt_expr:  expr.    (83)
+
+	NeEq  shift 64
+	Le  shift 65
+	Ge  shift 66
+	Or  shift 62
+	And  shift 63
+	'='  shift 61
+	'>'  shift 59
+	'<'  shift 60
+	'+'  shift 54
+	'-'  shift 55
+	'*'  shift 56
+	'/'  shift 57
+	'%'  shift 58
+	.  reduce 83 (src line 323)
+
+
+state 71
+	expr:  '(' expr.')' 
+	expr:  expr.'+' expr 
+	expr:  expr.'-' expr 
+	expr:  expr.'*' expr 
+	expr:  expr.'/' expr 
+	expr:  expr.'%' expr 
+	expr:  expr.'>' expr 
+	expr:  expr.'<' expr 
+	expr:  expr.'=' expr 
+	expr:  expr.Or expr 
+	expr:  expr.And expr 
+	expr:  expr.NeEq expr 
+	expr:  expr.Le expr 
+	expr:  expr.Ge expr 
+
+	NeEq  shift 64
+	Le  shift 65
+	Ge  shift 66
+	Or  shift 62
+	And  shift 63
+	'='  shift 61
+	'>'  shift 59
+	'<'  shift 60
+	'+'  shift 54
+	'-'  shift 55
+	'*'  shift 56
+	'/'  shift 57
+	'%'  shift 58
+	')'  shift 111
+	.  error
+
+
+state 72
+	expr:  expr.'+' expr 
+	expr:  expr.'-' expr 
+	expr:  expr.'*' expr 
+	expr:  expr.'/' expr 
+	expr:  expr.'%' expr 
+	expr:  expr.'>' expr 
+	expr:  expr.'<' expr 
+	expr:  expr.'=' expr 
+	expr:  expr.Or expr 
+	expr:  expr.And expr 
+	expr:  expr.NeEq expr 
+	expr:  expr.Le expr 
+	expr:  expr.Ge expr 
+	expr:  Not expr.    (79)
+
+	'='  shift 61
+	'>'  shift 59
+	'<'  shift 60
+	'+'  shift 54
+	'-'  shift 55
+	'*'  shift 56
+	'/'  shift 57
+	'%'  shift 58
+	.  reduce 79 (src line 318)
+
+
+state 73
+	expr:  GoTo goToLabel.    (81)
+
+	.  reduce 81 (src line 320)
+
+
+state 74
+	stmt_if:  If expr.Then opt_body opt_elseif_list opt_else EndIf 
+	expr:  expr.'+' expr 
+	expr:  expr.'-' expr 
+	expr:  expr.'*' expr 
+	expr:  expr.'/' expr 
+	expr:  expr.'%' expr 
+	expr:  expr.'>' expr 
+	expr:  expr.'<' expr 
+	expr:  expr.'=' expr 
+	expr:  expr.Or expr 
+	expr:  expr.And expr 
+	expr:  expr.NeEq expr 
+	expr:  expr.Le expr 
+	expr:  expr.Ge expr 
+
+	Then  shift 112
+	NeEq  shift 64
+	Le  shift 65
+	Ge  shift 66
+	Or  shift 62
+	And  shift 63
+	'='  shift 61
+	'>'  shift 59
+	'<'  shift 60
+	'+'  shift 54
+	'-'  shift 55
+	'*'  shift 56
+	'/'  shift 57
+	'%'  shift 58
+	.  error
+
+
+state 75
+	stmt_loop:  For Each.Identifier In loopExp Loop $$33 opt_body EndLoop 
+
+	Identifier  shift 113
+	.  error
+
+
+state 76
+	stmt_loop:  For expr.To expr Loop $$35 opt_body EndLoop 
+	expr:  expr.'+' expr 
+	expr:  expr.'-' expr 
+	expr:  expr.'*' expr 
+	expr:  expr.'/' expr 
+	expr:  expr.'%' expr 
+	expr:  expr.'>' expr 
+	expr:  expr.'<' expr 
+	expr:  expr.'=' expr 
+	expr:  expr.Or expr 
+	expr:  expr.And expr 
+	expr:  expr.NeEq expr 
+	expr:  expr.Le expr 
+	expr:  expr.Ge expr 
+
+	To  shift 114
+	NeEq  shift 64
+	Le  shift 65
+	Ge  shift 66
+	Or  shift 62
+	And  shift 63
+	'='  shift 61
+	'>'  shift 59
+	'<'  shift 60
+	'+'  shift 54
+	'-'  shift 55
+	'*'  shift 56
+	'/'  shift 57
+	'%'  shift 58
+	.  error
+
+
+state 77
+	stmt_loop:  While expr.Loop $$37 opt_body EndLoop 
+	expr:  expr.'+' expr 
+	expr:  expr.'-' expr 
+	expr:  expr.'*' expr 
+	expr:  expr.'/' expr 
+	expr:  expr.'%' expr 
+	expr:  expr.'>' expr 
+	expr:  expr.'<' expr 
+	expr:  expr.'=' expr 
+	expr:  expr.Or expr 
+	expr:  expr.And expr 
+	expr:  expr.NeEq expr 
+	expr:  expr.Le expr 
+	expr:  expr.Ge expr 
+
+	Loop  shift 115
+	NeEq  shift 64
+	Le  shift 65
+	Ge  shift 66
+	Or  shift 62
+	And  shift 63
+	'='  shift 61
+	'>'  shift 59
+	'<'  shift 60
+	'+'  shift 54
+	'-'  shift 55
+	'*'  shift 56
+	'/'  shift 57
+	'%'  shift 58
+	.  error
+
+
+state 78
+	body:  opt_body.separator opt_stmt 
+	stmt_tryCatch:  Try opt_body.Catch $$62 opt_body EndTry 
+
+	':'  shift 53
+	';'  shift 52
+	Catch  shift 116
+	.  error
+
+	separator  goto 49
+	semicolon  goto 50
+	colon  goto 51
+
+state 79
+	global_variables:  opt_directive Var.identifiers opt_export semicolon 
+
+	Identifier  shift 118
+	.  error
+
+	identifiers  goto 117
+
+state 80
+	funcProc:  opt_directive Function.Identifier '(' declarations_method_params ')' opt_export $$12 opt_explicit_variables opt_body EndFunction 
+
+	Identifier  shift 119
+	.  error
+
+
+state 81
+	funcProc:  opt_directive Procedure.Identifier '(' declarations_method_params ')' opt_export opt_explicit_variables opt_body EndProcedure 
+
+	Identifier  shift 120
+	.  error
+
+
+state 82
+	expr:  expr.'+' expr 
+	expr:  expr.'-' expr 
+	expr:  expr.'*' expr 
+	expr:  expr.'/' expr 
+	expr:  expr.'%' expr 
+	expr:  expr.'>' expr 
+	expr:  expr.'<' expr 
+	expr:  expr.'=' expr 
+	expr:  expr.Or expr 
+	expr:  expr.And expr 
+	expr:  expr.NeEq expr 
+	expr:  expr.Le expr 
+	expr:  expr.Ge expr 
+	simple_expr:  '-' expr.    (95)
+
+	.  reduce 95 (src line 348)
+
+
+state 83
+	expr:  expr.'+' expr 
+	expr:  expr.'-' expr 
+	expr:  expr.'*' expr 
+	expr:  expr.'/' expr 
+	expr:  expr.'%' expr 
+	expr:  expr.'>' expr 
+	expr:  expr.'<' expr 
+	expr:  expr.'=' expr 
+	expr:  expr.Or expr 
+	expr:  expr.And expr 
+	expr:  expr.NeEq expr 
+	expr:  expr.Le expr 
+	expr:  expr.Ge expr 
+	simple_expr:  '+' expr.    (96)
+
+	.  reduce 96 (src line 349)
+
+
+state 84
+	through_dot:  through_dot dot.identifier 
+
+	Identifier  shift 43
+	Execute  shift 44
+	BuiltinFunction  shift 45
+	.  error
+
+	identifier  goto 121
+
+state 85
+	dot:  '.'.    (112)
+
+	.  reduce 112 (src line 378)
+
+
+state 86
+	new_object:  New Identifier.    (90)
+	new_object:  New Identifier.'(' exprs ')' 
+
+	'('  shift 122
+	.  reduce 90 (src line 341)
+
+
+state 87
+	new_object:  New '('.exprs ')' 
+	opt_expr: .    (82)
+
+	Identifier  shift 43
+	Not  shift 19
+	GoToLabel  shift 40
+	Number  shift 28
+	String  shift 27
+	New  shift 38
+	True  shift 31
+	False  shift 32
+	Undefind  shift 34
+	Date  shift 33
+	GoTo  shift 21
+	Execute  shift 44
+	BuiltinFunction  shift 45
+	'+'  shift 30
+	'-'  shift 29
+	'('  shift 18
+	'?'  shift 42
+	.  reduce 82 (src line 323)
+
+	exprs  goto 123
+	expr  goto 70
+	simple_expr  goto 17
+	opt_expr  goto 124
+	through_dot  goto 36
+	new_object  goto 20
+	ternary  goto 37
+	identifier  goto 41
+	goToLabel  goto 35
+
+state 88
+	identifier:  identifier '['.expr ']' 
+
+	Identifier  shift 43
+	Not  shift 19
+	GoToLabel  shift 40
+	Number  shift 28
+	String  shift 27
+	New  shift 38
+	True  shift 31
+	False  shift 32
+	Undefind  shift 34
+	Date  shift 33
+	GoTo  shift 21
+	Execute  shift 44
+	BuiltinFunction  shift 45
+	'+'  shift 30
+	'-'  shift 29
+	'('  shift 18
+	'?'  shift 42
+	.  error
+
+	expr  goto 125
+	simple_expr  goto 17
+	through_dot  goto 36
+	new_object  goto 20
+	ternary  goto 37
+	identifier  goto 41
+	goToLabel  goto 35
+
+state 89
+	ternary:  '?' '('.expr comma expr comma expr ')' 
+
+	Identifier  shift 43
+	Not  shift 19
+	GoToLabel  shift 40
+	Number  shift 28
+	String  shift 27
+	New  shift 38
+	True  shift 31
+	False  shift 32
+	Undefind  shift 34
+	Date  shift 33
+	GoTo  shift 21
+	Execute  shift 44
+	BuiltinFunction  shift 45
+	'+'  shift 30
+	'-'  shift 29
+	'('  shift 18
+	'?'  shift 42
+	.  error
+
+	expr  goto 126
+	simple_expr  goto 17
+	through_dot  goto 36
+	new_object  goto 20
+	ternary  goto 37
+	identifier  goto 41
+	goToLabel  goto 35
+
+state 90
+	identifier:  Identifier '('.exprs ')' 
+	opt_expr: .    (82)
+
+	Identifier  shift 43
+	Not  shift 19
+	GoToLabel  shift 40
+	Number  shift 28
+	String  shift 27
+	New  shift 38
+	True  shift 31
+	False  shift 32
+	Undefind  shift 34
+	Date  shift 33
+	GoTo  shift 21
+	Execute  shift 44
+	BuiltinFunction  shift 45
+	'+'  shift 30
+	'-'  shift 29
+	'('  shift 18
+	'?'  shift 42
+	.  reduce 82 (src line 323)
+
+	exprs  goto 127
+	expr  goto 70
+	simple_expr  goto 17
+	opt_expr  goto 124
+	through_dot  goto 36
+	new_object  goto 20
+	ternary  goto 37
+	identifier  goto 41
+	goToLabel  goto 35
+
+state 91
+	identifier:  Execute execute_param.    (57)
+
+	.  reduce 57 (src line 288)
+
+
+state 92
+	identifier:  Execute '('.expr ')' 
+
+	Identifier  shift 43
+	Not  shift 19
+	GoToLabel  shift 40
+	Number  shift 28
+	String  shift 27
+	New  shift 38
+	True  shift 31
+	False  shift 32
+	Undefind  shift 34
+	Date  shift 33
+	GoTo  shift 21
+	Execute  shift 44
+	BuiltinFunction  shift 45
+	'+'  shift 30
+	'-'  shift 29
+	'('  shift 18
+	'?'  shift 42
+	.  error
+
+	expr  goto 128
+	simple_expr  goto 17
+	through_dot  goto 36
+	new_object  goto 20
+	ternary  goto 37
+	identifier  goto 41
+	goToLabel  goto 35
+
+state 93
+	execute_param:  String.    (60)
+
+	.  reduce 60 (src line 293)
+
+
+state 94
+	execute_param:  Identifier.    (61)
+
+	.  reduce 61 (src line 294)
+
+
+state 95
+	identifier:  BuiltinFunction '('.exprs ')' 
+	opt_expr: .    (82)
+
+	Identifier  shift 43
+	Not  shift 19
+	GoToLabel  shift 40
+	Number  shift 28
+	String  shift 27
+	New  shift 38
+	True  shift 31
+	False  shift 32
+	Undefind  shift 34
+	Date  shift 33
+	GoTo  shift 21
+	Execute  shift 44
+	BuiltinFunction  shift 45
+	'+'  shift 30
+	'-'  shift 29
+	'('  shift 18
+	'?'  shift 42
+	.  reduce 82 (src line 323)
+
+	exprs  goto 129
+	expr  goto 70
+	simple_expr  goto 17
+	opt_expr  goto 124
+	through_dot  goto 36
+	new_object  goto 20
+	ternary  goto 37
+	identifier  goto 41
+	goToLabel  goto 35
+
+state 96
+	body:  opt_body separator opt_stmt.    (18)
+
+	.  reduce 18 (src line 157)
+
+
+state 97
+	opt_stmt:  stmt.    (20)
+
+	.  reduce 20 (src line 171)
+
+
+state 98
+	expr:  expr.'+' expr 
+	expr:  expr '+' expr.    (66)
+	expr:  expr.'-' expr 
+	expr:  expr.'*' expr 
+	expr:  expr.'/' expr 
+	expr:  expr.'%' expr 
+	expr:  expr.'>' expr 
+	expr:  expr.'<' expr 
+	expr:  expr.'=' expr 
+	expr:  expr.Or expr 
+	expr:  expr.And expr 
+	expr:  expr.NeEq expr 
+	expr:  expr.Le expr 
+	expr:  expr.Ge expr 
+
+	'*'  shift 56
+	'/'  shift 57
+	'%'  shift 58
+	.  reduce 66 (src line 305)
+
+
+state 99
+	expr:  expr.'+' expr 
+	expr:  expr.'-' expr 
+	expr:  expr '-' expr.    (67)
+	expr:  expr.'*' expr 
+	expr:  expr.'/' expr 
+	expr:  expr.'%' expr 
+	expr:  expr.'>' expr 
+	expr:  expr.'<' expr 
+	expr:  expr.'=' expr 
+	expr:  expr.Or expr 
+	expr:  expr.And expr 
+	expr:  expr.NeEq expr 
+	expr:  expr.Le expr 
+	expr:  expr.Ge expr 
+
+	'*'  shift 56
+	'/'  shift 57
+	'%'  shift 58
+	.  reduce 67 (src line 306)
+
+
+state 100
+	expr:  expr.'+' expr 
+	expr:  expr.'-' expr 
+	expr:  expr.'*' expr 
+	expr:  expr '*' expr.    (68)
+	expr:  expr.'/' expr 
+	expr:  expr.'%' expr 
+	expr:  expr.'>' expr 
+	expr:  expr.'<' expr 
+	expr:  expr.'=' expr 
+	expr:  expr.Or expr 
+	expr:  expr.And expr 
+	expr:  expr.NeEq expr 
+	expr:  expr.Le expr 
+	expr:  expr.Ge expr 
+
+	.  reduce 68 (src line 307)
+
+
+state 101
+	expr:  expr.'+' expr 
+	expr:  expr.'-' expr 
+	expr:  expr.'*' expr 
+	expr:  expr.'/' expr 
+	expr:  expr '/' expr.    (69)
+	expr:  expr.'%' expr 
+	expr:  expr.'>' expr 
+	expr:  expr.'<' expr 
+	expr:  expr.'=' expr 
+	expr:  expr.Or expr 
+	expr:  expr.And expr 
+	expr:  expr.NeEq expr 
+	expr:  expr.Le expr 
+	expr:  expr.Ge expr 
+
+	.  reduce 69 (src line 308)
+
+
+state 102
+	expr:  expr.'+' expr 
+	expr:  expr.'-' expr 
+	expr:  expr.'*' expr 
+	expr:  expr.'/' expr 
+	expr:  expr.'%' expr 
+	expr:  expr '%' expr.    (70)
+	expr:  expr.'>' expr 
+	expr:  expr.'<' expr 
+	expr:  expr.'=' expr 
+	expr:  expr.Or expr 
+	expr:  expr.And expr 
+	expr:  expr.NeEq expr 
+	expr:  expr.Le expr 
+	expr:  expr.Ge expr 
+
+	.  reduce 70 (src line 309)
+
+
+state 103
+	expr:  expr.'+' expr 
+	expr:  expr.'-' expr 
+	expr:  expr.'*' expr 
+	expr:  expr.'/' expr 
+	expr:  expr.'%' expr 
+	expr:  expr.'>' expr 
+	expr:  expr '>' expr.    (71)
+	expr:  expr.'<' expr 
+	expr:  expr.'=' expr 
+	expr:  expr.Or expr 
+	expr:  expr.And expr 
+	expr:  expr.NeEq expr 
+	expr:  expr.Le expr 
+	expr:  expr.Ge expr 
+
+	'+'  shift 54
+	'-'  shift 55
+	'*'  shift 56
+	'/'  shift 57
+	'%'  shift 58
+	.  reduce 71 (src line 310)
+
+
+state 104
+	expr:  expr.'+' expr 
+	expr:  expr.'-' expr 
+	expr:  expr.'*' expr 
+	expr:  expr.'/' expr 
+	expr:  expr.'%' expr 
+	expr:  expr.'>' expr 
+	expr:  expr.'<' expr 
+	expr:  expr '<' expr.    (72)
+	expr:  expr.'=' expr 
+	expr:  expr.Or expr 
+	expr:  expr.And expr 
+	expr:  expr.NeEq expr 
+	expr:  expr.Le expr 
+	expr:  expr.Ge expr 
+
+	'+'  shift 54
+	'-'  shift 55
+	'*'  shift 56
+	'/'  shift 57
+	'%'  shift 58
+	.  reduce 72 (src line 311)
+
+
+state 105
+	expr:  expr.'+' expr 
+	expr:  expr.'-' expr 
+	expr:  expr.'*' expr 
+	expr:  expr.'/' expr 
+	expr:  expr.'%' expr 
+	expr:  expr.'>' expr 
+	expr:  expr.'<' expr 
+	expr:  expr.'=' expr 
+	expr:  expr '=' expr.    (73)
+	expr:  expr.Or expr 
+	expr:  expr.And expr 
+	expr:  expr.NeEq expr 
+	expr:  expr.Le expr 
+	expr:  expr.Ge expr 
+
+	'='  shift 61
+	'>'  shift 59
+	'<'  shift 60
+	'+'  shift 54
+	'-'  shift 55
+	'*'  shift 56
+	'/'  shift 57
+	'%'  shift 58
+	.  reduce 73 (src line 312)
+
+
+state 106
+	expr:  expr.'+' expr 
+	expr:  expr.'-' expr 
+	expr:  expr.'*' expr 
+	expr:  expr.'/' expr 
+	expr:  expr.'%' expr 
+	expr:  expr.'>' expr 
+	expr:  expr.'<' expr 
+	expr:  expr.'=' expr 
+	expr:  expr.Or expr 
+	expr:  expr Or expr.    (74)
+	expr:  expr.And expr 
+	expr:  expr.NeEq expr 
+	expr:  expr.Le expr 
+	expr:  expr.Ge expr 
+
+	NeEq  shift 64
+	Le  shift 65
+	Ge  shift 66
+	And  shift 63
+	'='  shift 61
+	'>'  shift 59
+	'<'  shift 60
+	'+'  shift 54
+	'-'  shift 55
+	'*'  shift 56
+	'/'  shift 57
+	'%'  shift 58
+	.  reduce 74 (src line 313)
+
+
+state 107
+	expr:  expr.'+' expr 
+	expr:  expr.'-' expr 
+	expr:  expr.'*' expr 
+	expr:  expr.'/' expr 
+	expr:  expr.'%' expr 
+	expr:  expr.'>' expr 
+	expr:  expr.'<' expr 
+	expr:  expr.'=' expr 
+	expr:  expr.Or expr 
+	expr:  expr.And expr 
+	expr:  expr And expr.    (75)
+	expr:  expr.NeEq expr 
+	expr:  expr.Le expr 
+	expr:  expr.Ge expr 
+
+	NeEq  shift 64
+	Le  shift 65
+	Ge  shift 66
+	'='  shift 61
+	'>'  shift 59
+	'<'  shift 60
+	'+'  shift 54
+	'-'  shift 55
+	'*'  shift 56
+	'/'  shift 57
+	'%'  shift 58
+	.  reduce 75 (src line 314)
+
+
+state 108
+	expr:  expr.'+' expr 
+	expr:  expr.'-' expr 
+	expr:  expr.'*' expr 
+	expr:  expr.'/' expr 
+	expr:  expr.'%' expr 
+	expr:  expr.'>' expr 
+	expr:  expr.'<' expr 
+	expr:  expr.'=' expr 
+	expr:  expr.Or expr 
+	expr:  expr.And expr 
+	expr:  expr.NeEq expr 
+	expr:  expr NeEq expr.    (76)
+	expr:  expr.Le expr 
+	expr:  expr.Ge expr 
+
+	Le  shift 65
+	Ge  shift 66
+	'='  shift 61
+	'>'  shift 59
+	'<'  shift 60
+	'+'  shift 54
+	'-'  shift 55
+	'*'  shift 56
+	'/'  shift 57
+	'%'  shift 58
+	.  reduce 76 (src line 315)
+
+
+state 109
+	expr:  expr.'+' expr 
+	expr:  expr.'-' expr 
+	expr:  expr.'*' expr 
+	expr:  expr.'/' expr 
+	expr:  expr.'%' expr 
+	expr:  expr.'>' expr 
+	expr:  expr.'<' expr 
+	expr:  expr.'=' expr 
+	expr:  expr.Or expr 
+	expr:  expr.And expr 
+	expr:  expr.NeEq expr 
+	expr:  expr.Le expr 
+	expr:  expr Le expr.    (77)
+	expr:  expr.Ge expr 
+
+	Ge  shift 66
+	'='  shift 61
+	'>'  shift 59
+	'<'  shift 60
+	'+'  shift 54
+	'-'  shift 55
+	'*'  shift 56
+	'/'  shift 57
+	'%'  shift 58
+	.  reduce 77 (src line 316)
+
+
+state 110
+	expr:  expr.'+' expr 
+	expr:  expr.'-' expr 
+	expr:  expr.'*' expr 
+	expr:  expr.'/' expr 
+	expr:  expr.'%' expr 
+	expr:  expr.'>' expr 
+	expr:  expr.'<' expr 
+	expr:  expr.'=' expr 
+	expr:  expr.Or expr 
+	expr:  expr.And expr 
+	expr:  expr.NeEq expr 
+	expr:  expr.Le expr 
+	expr:  expr.Ge expr 
+	expr:  expr Ge expr.    (78)
+
+	'='  shift 61
+	'>'  shift 59
+	'<'  shift 60
+	'+'  shift 54
+	'-'  shift 55
+	'*'  shift 56
+	'/'  shift 57
+	'%'  shift 58
+	.  reduce 78 (src line 317)
+
+
+state 111
+	expr:  '(' expr ')'.    (65)
+
+	.  reduce 65 (src line 304)
+
+
+state 112
+	stmt_if:  If expr Then.opt_body opt_elseif_list opt_else EndIf 
+	opt_body: .    (15)
+
+	Identifier  shift 43
+	If  shift 22
+	For  shift 23
+	Break  shift 12
+	Not  shift 19
+	While  shift 24
+	GoToLabel  shift 40
+	Continue  shift 11
+	Try  shift 25
+	Number  shift 28
+	String  shift 27
+	New  shift 38
+	Return  shift 14
+	Throw  shift 13
+	True  shift 31
+	False  shift 32
+	Undefind  shift 34
+	Date  shift 33
+	GoTo  shift 21
+	Execute  shift 44
+	BuiltinFunction  shift 45
+	'+'  shift 30
+	'-'  shift 29
+	'('  shift 18
+	'?'  shift 42
+	.  reduce 15 (src line 151)
+
+	body  goto 48
+	opt_body  goto 130
+	stmt  goto 4
+	stmt_loop  goto 9
+	stmt_if  goto 8
+	expr  goto 7
+	simple_expr  goto 17
+	through_dot  goto 36
+	new_object  goto 20
+	ternary  goto 37
+	stmt_tryCatch  goto 10
+	identifier  goto 41
+	goToLabel  goto 35
+
+state 113
+	stmt_loop:  For Each Identifier.In loopExp Loop $$33 opt_body EndLoop 
+
+	In  shift 131
+	.  error
+
+
+state 114
+	stmt_loop:  For expr To.expr Loop $$35 opt_body EndLoop 
+
+	Identifier  shift 43
+	Not  shift 19
+	GoToLabel  shift 40
+	Number  shift 28
+	String  shift 27
+	New  shift 38
+	True  shift 31
+	False  shift 32
+	Undefind  shift 34
+	Date  shift 33
+	GoTo  shift 21
+	Execute  shift 44
+	BuiltinFunction  shift 45
+	'+'  shift 30
+	'-'  shift 29
+	'('  shift 18
+	'?'  shift 42
+	.  error
+
+	expr  goto 132
+	simple_expr  goto 17
+	through_dot  goto 36
+	new_object  goto 20
+	ternary  goto 37
+	identifier  goto 41
+	goToLabel  goto 35
+
+state 115
+	stmt_loop:  While expr Loop.$$37 opt_body EndLoop 
+	$$37: .    (37)
+
+	.  reduce 37 (src line 248)
+
+	$$37  goto 133
+
+state 116
+	stmt_tryCatch:  Try opt_body Catch.$$62 opt_body EndTry 
+	$$62: .    (62)
+
+	.  reduce 62 (src line 297)
+
+	$$62  goto 134
+
+state 117
+	global_variables:  opt_directive Var identifiers.opt_export semicolon 
+	identifiers:  identifiers.comma Identifier 
+	opt_export: .    (9)
+
+	Export  shift 137
+	','  shift 138
+	.  reduce 9 (src line 123)
+
+	opt_export  goto 135
+	comma  goto 136
+
+state 118
+	identifiers:  Identifier.    (107)
+
+	.  reduce 107 (src line 371)
+
+
+state 119
+	funcProc:  opt_directive Function Identifier.'(' declarations_method_params ')' opt_export $$12 opt_explicit_variables opt_body EndFunction 
+
+	'('  shift 139
+	.  error
+
+
+state 120
+	funcProc:  opt_directive Procedure Identifier.'(' declarations_method_params ')' opt_export opt_explicit_variables opt_body EndProcedure 
+
+	'('  shift 140
+	.  error
+
+
+state 121
+	through_dot:  through_dot dot identifier.    (53)
+	identifier:  identifier.'[' expr ']' 
+
+	'['  shift 88
+	.  reduce 53 (src line 279)
+
+
+state 122
+	new_object:  New Identifier '('.exprs ')' 
+	opt_expr: .    (82)
+
+	Identifier  shift 43
+	Not  shift 19
+	GoToLabel  shift 40
+	Number  shift 28
+	String  shift 27
+	New  shift 38
+	True  shift 31
+	False  shift 32
+	Undefind  shift 34
+	Date  shift 33
+	GoTo  shift 21
+	Execute  shift 44
+	BuiltinFunction  shift 45
+	'+'  shift 30
+	'-'  shift 29
+	'('  shift 18
+	'?'  shift 42
+	.  reduce 82 (src line 323)
+
+	exprs  goto 141
+	expr  goto 70
+	simple_expr  goto 17
+	opt_expr  goto 124
+	through_dot  goto 36
+	new_object  goto 20
+	ternary  goto 37
+	identifier  goto 41
+	goToLabel  goto 35
+
+state 123
+	new_object:  New '(' exprs.')' 
+	exprs:  exprs.comma opt_expr 
+
+	')'  shift 142
+	','  shift 138
+	.  error
+
+	comma  goto 143
+
+state 124
+	exprs:  opt_expr.    (105)
+
+	.  reduce 105 (src line 367)
+
+
+state 125
+	identifier:  identifier '[' expr.']' 
+	expr:  expr.'+' expr 
+	expr:  expr.'-' expr 
+	expr:  expr.'*' expr 
+	expr:  expr.'/' expr 
+	expr:  expr.'%' expr 
+	expr:  expr.'>' expr 
+	expr:  expr.'<' expr 
+	expr:  expr.'=' expr 
+	expr:  expr.Or expr 
+	expr:  expr.And expr 
+	expr:  expr.NeEq expr 
+	expr:  expr.Le expr 
+	expr:  expr.Ge expr 
+
+	NeEq  shift 64
+	Le  shift 65
+	Ge  shift 66
+	Or  shift 62
+	And  shift 63
+	'='  shift 61
+	'>'  shift 59
+	'<'  shift 60
+	'+'  shift 54
+	'-'  shift 55
+	'*'  shift 56
+	'/'  shift 57
+	'%'  shift 58
+	']'  shift 144
+	.  error
+
+
+state 126
+	ternary:  '?' '(' expr.comma expr comma expr ')' 
+	expr:  expr.'+' expr 
+	expr:  expr.'-' expr 
+	expr:  expr.'*' expr 
+	expr:  expr.'/' expr 
+	expr:  expr.'%' expr 
+	expr:  expr.'>' expr 
+	expr:  expr.'<' expr 
+	expr:  expr.'=' expr 
+	expr:  expr.Or expr 
+	expr:  expr.And expr 
+	expr:  expr.NeEq expr 
+	expr:  expr.Le expr 
+	expr:  expr.Ge expr 
+
+	NeEq  shift 64
+	Le  shift 65
+	Ge  shift 66
+	Or  shift 62
+	And  shift 63
+	'='  shift 61
+	'>'  shift 59
+	'<'  shift 60
+	'+'  shift 54
+	'-'  shift 55
+	'*'  shift 56
+	'/'  shift 57
+	'%'  shift 58
+	','  shift 138
+	.  error
+
+	comma  goto 145
+
+state 127
+	identifier:  Identifier '(' exprs.')' 
+	exprs:  exprs.comma opt_expr 
+
+	')'  shift 146
+	','  shift 138
+	.  error
+
+	comma  goto 143
+
+state 128
+	identifier:  Execute '(' expr.')' 
+	expr:  expr.'+' expr 
+	expr:  expr.'-' expr 
+	expr:  expr.'*' expr 
+	expr:  expr.'/' expr 
+	expr:  expr.'%' expr 
+	expr:  expr.'>' expr 
+	expr:  expr.'<' expr 
+	expr:  expr.'=' expr 
+	expr:  expr.Or expr 
+	expr:  expr.And expr 
+	expr:  expr.NeEq expr 
+	expr:  expr.Le expr 
+	expr:  expr.Ge expr 
+
+	NeEq  shift 64
+	Le  shift 65
+	Ge  shift 66
+	Or  shift 62
+	And  shift 63
+	'='  shift 61
+	'>'  shift 59
+	'<'  shift 60
+	'+'  shift 54
+	'-'  shift 55
+	'*'  shift 56
+	'/'  shift 57
+	'%'  shift 58
+	')'  shift 147
+	.  error
+
+
+state 129
+	identifier:  BuiltinFunction '(' exprs.')' 
+	exprs:  exprs.comma opt_expr 
+
+	')'  shift 148
+	','  shift 138
+	.  error
+
+	comma  goto 143
+
+state 130
+	body:  opt_body.separator opt_stmt 
+	stmt_if:  If expr Then opt_body.opt_elseif_list opt_else EndIf 
+	opt_elseif_list: .    (28)
+
+	':'  shift 53
+	';'  shift 52
+	ElseIf  shift 150
+	.  reduce 28 (src line 210)
+
+	opt_elseif_list  goto 149
+	separator  goto 49
+	semicolon  goto 50
+	colon  goto 51
+
+state 131
+	stmt_loop:  For Each Identifier In.loopExp Loop $$33 opt_body EndLoop 
+
+	Identifier  shift 43
+	New  shift 38
+	Execute  shift 44
+	BuiltinFunction  shift 45
+	'('  shift 154
+	.  error
+
+	through_dot  goto 152
+	loopExp  goto 151
+	new_object  goto 153
+	identifier  goto 41
+
+state 132
+	stmt_loop:  For expr To expr.Loop $$35 opt_body EndLoop 
+	expr:  expr.'+' expr 
+	expr:  expr.'-' expr 
+	expr:  expr.'*' expr 
+	expr:  expr.'/' expr 
+	expr:  expr.'%' expr 
+	expr:  expr.'>' expr 
+	expr:  expr.'<' expr 
+	expr:  expr.'=' expr 
+	expr:  expr.Or expr 
+	expr:  expr.And expr 
+	expr:  expr.NeEq expr 
+	expr:  expr.Le expr 
+	expr:  expr.Ge expr 
+
+	Loop  shift 155
+	NeEq  shift 64
+	Le  shift 65
+	Ge  shift 66
+	Or  shift 62
+	And  shift 63
+	'='  shift 61
+	'>'  shift 59
+	'<'  shift 60
+	'+'  shift 54
+	'-'  shift 55
+	'*'  shift 56
+	'/'  shift 57
+	'%'  shift 58
+	.  error
+
+
+state 133
+	stmt_loop:  While expr Loop $$37.opt_body EndLoop 
+	opt_body: .    (15)
+
+	Identifier  shift 43
+	If  shift 22
+	For  shift 23
+	Break  shift 12
+	Not  shift 19
+	While  shift 24
+	GoToLabel  shift 40
+	Continue  shift 11
+	Try  shift 25
+	Number  shift 28
+	String  shift 27
+	New  shift 38
+	Return  shift 14
+	Throw  shift 13
+	True  shift 31
+	False  shift 32
+	Undefind  shift 34
+	Date  shift 33
+	GoTo  shift 21
+	Execute  shift 44
+	BuiltinFunction  shift 45
+	'+'  shift 30
+	'-'  shift 29
+	'('  shift 18
+	'?'  shift 42
+	.  reduce 15 (src line 151)
+
+	body  goto 48
+	opt_body  goto 156
+	stmt  goto 4
+	stmt_loop  goto 9
+	stmt_if  goto 8
+	expr  goto 7
+	simple_expr  goto 17
+	through_dot  goto 36
+	new_object  goto 20
+	ternary  goto 37
+	stmt_tryCatch  goto 10
+	identifier  goto 41
+	goToLabel  goto 35
+
+state 134
+	stmt_tryCatch:  Try opt_body Catch $$62.opt_body EndTry 
+	opt_body: .    (15)
+
+	Identifier  shift 43
+	If  shift 22
+	For  shift 23
+	Break  shift 12
+	Not  shift 19
+	While  shift 24
+	GoToLabel  shift 40
+	Continue  shift 11
+	Try  shift 25
+	Number  shift 28
+	String  shift 27
+	New  shift 38
+	Return  shift 14
+	Throw  shift 13
+	True  shift 31
+	False  shift 32
+	Undefind  shift 34
+	Date  shift 33
+	GoTo  shift 21
+	Execute  shift 44
+	BuiltinFunction  shift 45
+	'+'  shift 30
+	'-'  shift 29
+	'('  shift 18
+	'?'  shift 42
+	.  reduce 15 (src line 151)
+
+	body  goto 48
+	opt_body  goto 157
+	stmt  goto 4
+	stmt_loop  goto 9
+	stmt_if  goto 8
+	expr  goto 7
+	simple_expr  goto 17
+	through_dot  goto 36
+	new_object  goto 20
+	ternary  goto 37
+	stmt_tryCatch  goto 10
+	identifier  goto 41
+	goToLabel  goto 35
+
+state 135
+	global_variables:  opt_directive Var identifiers opt_export.semicolon 
+
+	';'  shift 52
+	.  error
+
+	semicolon  goto 158
+
+state 136
+	identifiers:  identifiers comma.Identifier 
+
+	Identifier  shift 159
+	.  error
+
+
+state 137
+	opt_export:  Export.    (10)
+
+	.  reduce 10 (src line 124)
+
+
+state 138
+	comma:  ','.    (111)
+
+	.  reduce 111 (src line 377)
+
+
+state 139
+	funcProc:  opt_directive Function Identifier '('.declarations_method_params ')' opt_export $$12 opt_explicit_variables opt_body EndFunction 
+	declarations_method_params: .    (87)
+
+	Identifier  shift 162
+	ValueParam  shift 163
+	.  reduce 87 (src line 331)
+
+	declarations_method_params  goto 160
+	declarations_method_param  goto 161
+
+state 140
+	funcProc:  opt_directive Procedure Identifier '('.declarations_method_params ')' opt_export opt_explicit_variables opt_body EndProcedure 
+	declarations_method_params: .    (87)
+
+	Identifier  shift 162
+	ValueParam  shift 163
+	.  reduce 87 (src line 331)
+
+	declarations_method_params  goto 164
+	declarations_method_param  goto 161
+
+state 141
+	new_object:  New Identifier '(' exprs.')' 
+	exprs:  exprs.comma opt_expr 
+
+	')'  shift 165
+	','  shift 138
+	.  error
+
+	comma  goto 143
+
+state 142
+	new_object:  New '(' exprs ')'.    (92)
+
+	.  reduce 92 (src line 343)
+
+
+state 143
+	exprs:  exprs comma.opt_expr 
+	opt_expr: .    (82)
+
+	Identifier  shift 43
+	Not  shift 19
+	GoToLabel  shift 40
+	Number  shift 28
+	String  shift 27
+	New  shift 38
+	True  shift 31
+	False  shift 32
+	Undefind  shift 34
+	Date  shift 33
+	GoTo  shift 21
+	Execute  shift 44
+	BuiltinFunction  shift 45
+	'+'  shift 30
+	'-'  shift 29
+	'('  shift 18
+	'?'  shift 42
+	.  reduce 82 (src line 323)
+
+	expr  goto 70
+	simple_expr  goto 17
+	opt_expr  goto 166
+	through_dot  goto 36
+	new_object  goto 20
+	ternary  goto 37
+	identifier  goto 41
+	goToLabel  goto 35
+
+state 144
+	identifier:  identifier '[' expr ']'.    (56)
+
+	.  reduce 56 (src line 287)
+
+
+state 145
+	ternary:  '?' '(' expr comma.expr comma expr ')' 
+
+	Identifier  shift 43
+	Not  shift 19
+	GoToLabel  shift 40
+	Number  shift 28
+	String  shift 27
+	New  shift 38
+	True  shift 31
+	False  shift 32
+	Undefind  shift 34
+	Date  shift 33
+	GoTo  shift 21
+	Execute  shift 44
+	BuiltinFunction  shift 45
+	'+'  shift 30
+	'-'  shift 29
+	'('  shift 18
+	'?'  shift 42
+	.  error
+
+	expr  goto 167
+	simple_expr  goto 17
+	through_dot  goto 36
+	new_object  goto 20
+	ternary  goto 37
+	identifier  goto 41
+	goToLabel  goto 35
+
+state 146
+	identifier:  Identifier '(' exprs ')'.    (55)
+
+	.  reduce 55 (src line 286)
+
+
+state 147
+	identifier:  Execute '(' expr ')'.    (58)
+
+	.  reduce 58 (src line 289)
+
+
+state 148
+	identifier:  BuiltinFunction '(' exprs ')'.    (59)
+
+	.  reduce 59 (src line 290)
+
+
+state 149
+	stmt_if:  If expr Then opt_body opt_elseif_list.opt_else EndIf 
+	opt_else: .    (30)
+
+	Else  shift 169
+	.  reduce 30 (src line 219)
+
+	opt_else  goto 168
+
+state 150
+	opt_elseif_list:  ElseIf.expr Then opt_body opt_elseif_list 
+
+	Identifier  shift 43
+	Not  shift 19
+	GoToLabel  shift 40
+	Number  shift 28
+	String  shift 27
+	New  shift 38
+	True  shift 31
+	False  shift 32
+	Undefind  shift 34
+	Date  shift 33
+	GoTo  shift 21
+	Execute  shift 44
+	BuiltinFunction  shift 45
+	'+'  shift 30
+	'-'  shift 29
+	'('  shift 18
+	'?'  shift 42
+	.  error
+
+	expr  goto 170
+	simple_expr  goto 17
+	through_dot  goto 36
+	new_object  goto 20
+	ternary  goto 37
+	identifier  goto 41
+	goToLabel  goto 35
+
+state 151
+	stmt_loop:  For Each Identifier In loopExp.Loop $$33 opt_body EndLoop 
+
+	Loop  shift 171
+	.  error
+
+
+state 152
+	loopExp:  through_dot.    (39)
+	through_dot:  through_dot.dot identifier 
+
+	'.'  shift 85
+	.  reduce 39 (src line 257)
+
+	dot  goto 84
+
+state 153
+	loopExp:  new_object.    (40)
+
+	.  reduce 40 (src line 258)
+
+
+state 154
+	loopExp:  '('.new_object ')' 
+
+	New  shift 38
+	.  error
+
+	new_object  goto 172
+
+state 155
+	stmt_loop:  For expr To expr Loop.$$35 opt_body EndLoop 
+	$$35: .    (35)
+
+	.  reduce 35 (src line 240)
+
+	$$35  goto 173
+
+state 156
+	body:  opt_body.separator opt_stmt 
+	stmt_loop:  While expr Loop $$37 opt_body.EndLoop 
+
+	':'  shift 53
+	';'  shift 52
+	EndLoop  shift 174
+	.  error
+
+	separator  goto 49
+	semicolon  goto 50
+	colon  goto 51
+
+state 157
+	body:  opt_body.separator opt_stmt 
+	stmt_tryCatch:  Try opt_body Catch $$62 opt_body.EndTry 
+
+	':'  shift 53
+	';'  shift 52
+	EndTry  shift 175
+	.  error
+
+	separator  goto 49
+	semicolon  goto 50
+	colon  goto 51
+
+state 158
+	global_variables:  opt_directive Var identifiers opt_export semicolon.    (11)
+
+	.  reduce 11 (src line 127)
+
+
+state 159
+	identifiers:  identifiers comma Identifier.    (108)
+
+	.  reduce 108 (src line 372)
+
+
+state 160
+	funcProc:  opt_directive Function Identifier '(' declarations_method_params.')' opt_export $$12 opt_explicit_variables opt_body EndFunction 
+	declarations_method_params:  declarations_method_params.comma declarations_method_param 
+
+	')'  shift 176
+	','  shift 138
+	.  error
+
+	comma  goto 177
+
+state 161
+	declarations_method_param:  declarations_method_param.'=' simple_expr 
+	declarations_method_params:  declarations_method_param.    (88)
+
+	'='  shift 178
+	.  reduce 88 (src line 332)
+
+
+state 162
+	declarations_method_param:  Identifier.    (84)
+
+	.  reduce 84 (src line 326)
+
+
+state 163
+	declarations_method_param:  ValueParam.Identifier 
+
+	Identifier  shift 179
+	.  error
+
+
+state 164
+	funcProc:  opt_directive Procedure Identifier '(' declarations_method_params.')' opt_export opt_explicit_variables opt_body EndProcedure 
+	declarations_method_params:  declarations_method_params.comma declarations_method_param 
+
+	')'  shift 180
+	','  shift 138
+	.  error
+
+	comma  goto 177
+
+state 165
+	new_object:  New Identifier '(' exprs ')'.    (91)
+
+	.  reduce 91 (src line 342)
+
+
+state 166
+	exprs:  exprs comma opt_expr.    (106)
+
+	.  reduce 106 (src line 368)
+
+
+state 167
+	ternary:  '?' '(' expr comma expr.comma expr ')' 
+	expr:  expr.'+' expr 
+	expr:  expr.'-' expr 
+	expr:  expr.'*' expr 
+	expr:  expr.'/' expr 
+	expr:  expr.'%' expr 
+	expr:  expr.'>' expr 
+	expr:  expr.'<' expr 
+	expr:  expr.'=' expr 
+	expr:  expr.Or expr 
+	expr:  expr.And expr 
+	expr:  expr.NeEq expr 
+	expr:  expr.Le expr 
+	expr:  expr.Ge expr 
+
+	NeEq  shift 64
+	Le  shift 65
+	Ge  shift 66
+	Or  shift 62
+	And  shift 63
+	'='  shift 61
+	'>'  shift 59
+	'<'  shift 60
+	'+'  shift 54
+	'-'  shift 55
+	'*'  shift 56
+	'/'  shift 57
+	'%'  shift 58
+	','  shift 138
+	.  error
+
+	comma  goto 181
+
+state 168
+	stmt_if:  If expr Then opt_body opt_elseif_list opt_else.EndIf 
+
+	EndIf  shift 182
+	.  error
+
+
+state 169
+	opt_else:  Else.opt_body 
+	opt_body: .    (15)
+
+	Identifier  shift 43
+	If  shift 22
+	For  shift 23
+	Break  shift 12
+	Not  shift 19
+	While  shift 24
+	GoToLabel  shift 40
+	Continue  shift 11
+	Try  shift 25
+	Number  shift 28
+	String  shift 27
+	New  shift 38
+	Return  shift 14
+	Throw  shift 13
+	True  shift 31
+	False  shift 32
+	Undefind  shift 34
+	Date  shift 33
+	GoTo  shift 21
+	Execute  shift 44
+	BuiltinFunction  shift 45
+	'+'  shift 30
+	'-'  shift 29
+	'('  shift 18
+	'?'  shift 42
+	.  reduce 15 (src line 151)
+
+	body  goto 48
+	opt_body  goto 183
+	stmt  goto 4
+	stmt_loop  goto 9
+	stmt_if  goto 8
+	expr  goto 7
+	simple_expr  goto 17
+	through_dot  goto 36
+	new_object  goto 20
+	ternary  goto 37
+	stmt_tryCatch  goto 10
+	identifier  goto 41
+	goToLabel  goto 35
+
+state 170
+	opt_elseif_list:  ElseIf expr.Then opt_body opt_elseif_list 
+	expr:  expr.'+' expr 
+	expr:  expr.'-' expr 
+	expr:  expr.'*' expr 
+	expr:  expr.'/' expr 
+	expr:  expr.'%' expr 
+	expr:  expr.'>' expr 
+	expr:  expr.'<' expr 
+	expr:  expr.'=' expr 
+	expr:  expr.Or expr 
+	expr:  expr.And expr 
+	expr:  expr.NeEq expr 
+	expr:  expr.Le expr 
+	expr:  expr.Ge expr 
+
+	Then  shift 184
+	NeEq  shift 64
+	Le  shift 65
+	Ge  shift 66
+	Or  shift 62
+	And  shift 63
+	'='  shift 61
+	'>'  shift 59
+	'<'  shift 60
+	'+'  shift 54
+	'-'  shift 55
+	'*'  shift 56
+	'/'  shift 57
+	'%'  shift 58
+	.  error
+
+
+state 171
+	stmt_loop:  For Each Identifier In loopExp Loop.$$33 opt_body EndLoop 
+	$$33: .    (33)
+
+	.  reduce 33 (src line 232)
+
+	$$33  goto 185
+
+state 172
+	loopExp:  '(' new_object.')' 
+
+	')'  shift 186
+	.  error
+
+
+state 173
+	stmt_loop:  For expr To expr Loop $$35.opt_body EndLoop 
+	opt_body: .    (15)
+
+	Identifier  shift 43
+	If  shift 22
+	For  shift 23
+	Break  shift 12
+	Not  shift 19
+	While  shift 24
+	GoToLabel  shift 40
+	Continue  shift 11
+	Try  shift 25
+	Number  shift 28
+	String  shift 27
+	New  shift 38
+	Return  shift 14
+	Throw  shift 13
+	True  shift 31
+	False  shift 32
+	Undefind  shift 34
+	Date  shift 33
+	GoTo  shift 21
+	Execute  shift 44
+	BuiltinFunction  shift 45
+	'+'  shift 30
+	'-'  shift 29
+	'('  shift 18
+	'?'  shift 42
+	.  reduce 15 (src line 151)
+
+	body  goto 48
+	opt_body  goto 187
+	stmt  goto 4
+	stmt_loop  goto 9
+	stmt_if  goto 8
+	expr  goto 7
+	simple_expr  goto 17
+	through_dot  goto 36
+	new_object  goto 20
+	ternary  goto 37
+	stmt_tryCatch  goto 10
+	identifier  goto 41
+	goToLabel  goto 35
+
+state 174
+	stmt_loop:  While expr Loop $$37 opt_body EndLoop.    (38)
+
+	.  reduce 38 (src line 248)
+
+
+state 175
+	stmt_tryCatch:  Try opt_body Catch $$62 opt_body EndTry.    (63)
+
+	.  reduce 63 (src line 297)
+
+
+state 176
+	funcProc:  opt_directive Function Identifier '(' declarations_method_params ')'.opt_export $$12 opt_explicit_variables opt_body EndFunction 
+	opt_export: .    (9)
+
+	Export  shift 137
+	.  reduce 9 (src line 123)
+
+	opt_export  goto 188
+
+state 177
+	declarations_method_params:  declarations_method_params comma.declarations_method_param 
+
+	Identifier  shift 162
+	ValueParam  shift 163
+	.  error
+
+	declarations_method_param  goto 189
+
+state 178
+	declarations_method_param:  declarations_method_param '='.simple_expr 
+
+	Identifier  shift 43
+	GoToLabel  shift 40
+	Number  shift 28
+	String  shift 27
+	True  shift 31
+	False  shift 32
+	Undefind  shift 34
+	Date  shift 33
+	Execute  shift 44
+	BuiltinFunction  shift 45
+	'+'  shift 30
+	'-'  shift 29
+	'?'  shift 42
+	.  error
+
+	simple_expr  goto 190
+	through_dot  goto 36
+	ternary  goto 37
+	identifier  goto 41
+	goToLabel  goto 35
+
+state 179
+	declarations_method_param:  ValueParam Identifier.    (85)
+
+	.  reduce 85 (src line 327)
+
+
+state 180
+	funcProc:  opt_directive Procedure Identifier '(' declarations_method_params ')'.opt_export opt_explicit_variables opt_body EndProcedure 
+	opt_export: .    (9)
+
+	Export  shift 137
+	.  reduce 9 (src line 123)
+
+	opt_export  goto 191
+
+state 181
+	ternary:  '?' '(' expr comma expr comma.expr ')' 
+
+	Identifier  shift 43
+	Not  shift 19
+	GoToLabel  shift 40
+	Number  shift 28
+	String  shift 27
+	New  shift 38
+	True  shift 31
+	False  shift 32
+	Undefind  shift 34
+	Date  shift 33
+	GoTo  shift 21
+	Execute  shift 44
+	BuiltinFunction  shift 45
+	'+'  shift 30
+	'-'  shift 29
+	'('  shift 18
+	'?'  shift 42
+	.  error
+
+	expr  goto 192
+	simple_expr  goto 17
+	through_dot  goto 36
+	new_object  goto 20
+	ternary  goto 37
+	identifier  goto 41
+	goToLabel  goto 35
+
+state 182
+	stmt_if:  If expr Then opt_body opt_elseif_list opt_else EndIf.    (27)
+
+	.  reduce 27 (src line 200)
+
+
+state 183
+	body:  opt_body.separator opt_stmt 
+	opt_else:  Else opt_body.    (31)
+
+	':'  shift 53
+	';'  shift 52
+	.  reduce 31 (src line 220)
+
+	separator  goto 49
+	semicolon  goto 50
+	colon  goto 51
+
+state 184
+	opt_elseif_list:  ElseIf expr Then.opt_body opt_elseif_list 
+	opt_body: .    (15)
+
+	Identifier  shift 43
+	If  shift 22
+	For  shift 23
+	Break  shift 12
+	Not  shift 19
+	While  shift 24
+	GoToLabel  shift 40
+	Continue  shift 11
+	Try  shift 25
+	Number  shift 28
+	String  shift 27
+	New  shift 38
+	Return  shift 14
+	Throw  shift 13
+	True  shift 31
+	False  shift 32
+	Undefind  shift 34
+	Date  shift 33
+	GoTo  shift 21
+	Execute  shift 44
+	BuiltinFunction  shift 45
+	'+'  shift 30
+	'-'  shift 29
+	'('  shift 18
+	'?'  shift 42
+	.  reduce 15 (src line 151)
+
+	body  goto 48
+	opt_body  goto 193
+	stmt  goto 4
+	stmt_loop  goto 9
+	stmt_if  goto 8
+	expr  goto 7
+	simple_expr  goto 17
+	through_dot  goto 36
+	new_object  goto 20
+	ternary  goto 37
+	stmt_tryCatch  goto 10
+	identifier  goto 41
+	goToLabel  goto 35
+
+state 185
+	stmt_loop:  For Each Identifier In loopExp Loop $$33.opt_body EndLoop 
+	opt_body: .    (15)
+
+	Identifier  shift 43
+	If  shift 22
+	For  shift 23
+	Break  shift 12
+	Not  shift 19
+	While  shift 24
+	GoToLabel  shift 40
+	Continue  shift 11
+	Try  shift 25
+	Number  shift 28
+	String  shift 27
+	New  shift 38
+	Return  shift 14
+	Throw  shift 13
+	True  shift 31
+	False  shift 32
+	Undefind  shift 34
+	Date  shift 33
+	GoTo  shift 21
+	Execute  shift 44
+	BuiltinFunction  shift 45
+	'+'  shift 30
+	'-'  shift 29
+	'('  shift 18
+	'?'  shift 42
+	.  reduce 15 (src line 151)
+
+	body  goto 48
+	opt_body  goto 194
+	stmt  goto 4
+	stmt_loop  goto 9
+	stmt_if  goto 8
+	expr  goto 7
+	simple_expr  goto 17
+	through_dot  goto 36
+	new_object  goto 20
+	ternary  goto 37
+	stmt_tryCatch  goto 10
+	identifier  goto 41
+	goToLabel  goto 35
+
+state 186
+	loopExp:  '(' new_object ')'.    (41)
+
+	.  reduce 41 (src line 259)
+
+
+state 187
+	body:  opt_body.separator opt_stmt 
+	stmt_loop:  For expr To expr Loop $$35 opt_body.EndLoop 
+
+	':'  shift 53
+	';'  shift 52
+	EndLoop  shift 195
+	.  error
+
+	separator  goto 49
+	semicolon  goto 50
+	colon  goto 51
+
+state 188
+	funcProc:  opt_directive Function Identifier '(' declarations_method_params ')' opt_export.$$12 opt_explicit_variables opt_body EndFunction 
+	$$12: .    (12)
+
+	.  reduce 12 (src line 140)
+
+	$$12  goto 196
+
+state 189
+	declarations_method_param:  declarations_method_param.'=' simple_expr 
+	declarations_method_params:  declarations_method_params comma declarations_method_param.    (89)
+
+	'='  shift 178
+	.  reduce 89 (src line 333)
+
+
+state 190
+	declarations_method_param:  declarations_method_param '=' simple_expr.    (86)
+
+	.  reduce 86 (src line 328)
+
+
+state 191
+	funcProc:  opt_directive Procedure Identifier '(' declarations_method_params ')' opt_export.opt_explicit_variables opt_body EndProcedure 
+	opt_explicit_variables: .    (23)
+
+	Var  shift 199
+	.  reduce 23 (src line 178)
+
+	opt_explicit_variables  goto 197
+	explicit_variables  goto 198
+
+state 192
+	ternary:  '?' '(' expr comma expr comma expr.')' 
+	expr:  expr.'+' expr 
+	expr:  expr.'-' expr 
+	expr:  expr.'*' expr 
+	expr:  expr.'/' expr 
+	expr:  expr.'%' expr 
+	expr:  expr.'>' expr 
+	expr:  expr.'<' expr 
+	expr:  expr.'=' expr 
+	expr:  expr.Or expr 
+	expr:  expr.And expr 
+	expr:  expr.NeEq expr 
+	expr:  expr.Le expr 
+	expr:  expr.Ge expr 
+
+	NeEq  shift 64
+	Le  shift 65
+	Ge  shift 66
+	Or  shift 62
+	And  shift 63
+	'='  shift 61
+	'>'  shift 59
+	'<'  shift 60
+	'+'  shift 54
+	'-'  shift 55
+	'*'  shift 56
+	'/'  shift 57
+	'%'  shift 58
+	')'  shift 200
+	.  error
+
+
+state 193
+	body:  opt_body.separator opt_stmt 
+	opt_elseif_list:  ElseIf expr Then opt_body.opt_elseif_list 
+	opt_elseif_list: .    (28)
+
+	':'  shift 53
+	';'  shift 52
+	ElseIf  shift 150
+	.  reduce 28 (src line 210)
+
+	opt_elseif_list  goto 201
+	separator  goto 49
+	semicolon  goto 50
+	colon  goto 51
+
+state 194
+	body:  opt_body.separator opt_stmt 
+	stmt_loop:  For Each Identifier In loopExp Loop $$33 opt_body.EndLoop 
+
+	':'  shift 53
+	';'  shift 52
+	EndLoop  shift 202
+	.  error
+
+	separator  goto 49
+	semicolon  goto 50
+	colon  goto 51
+
+state 195
+	stmt_loop:  For expr To expr Loop $$35 opt_body EndLoop.    (36)
+
+	.  reduce 36 (src line 240)
+
+
+state 196
+	funcProc:  opt_directive Function Identifier '(' declarations_method_params ')' opt_export $$12.opt_explicit_variables opt_body EndFunction 
+	opt_explicit_variables: .    (23)
+
+	Var  shift 199
+	.  reduce 23 (src line 178)
+
+	opt_explicit_variables  goto 203
+	explicit_variables  goto 198
+
+state 197
+	funcProc:  opt_directive Procedure Identifier '(' declarations_method_params ')' opt_export opt_explicit_variables.opt_body EndProcedure 
+	opt_body: .    (15)
+
+	Identifier  shift 43
+	If  shift 22
+	For  shift 23
+	Break  shift 12
+	Not  shift 19
+	While  shift 24
+	GoToLabel  shift 40
+	Continue  shift 11
+	Try  shift 25
+	Number  shift 28
+	String  shift 27
+	New  shift 38
+	Return  shift 14
+	Throw  shift 13
+	True  shift 31
+	False  shift 32
+	Undefind  shift 34
+	Date  shift 33
+	GoTo  shift 21
+	Execute  shift 44
+	BuiltinFunction  shift 45
+	'+'  shift 30
+	'-'  shift 29
+	'('  shift 18
+	'?'  shift 42
+	.  reduce 15 (src line 151)
+
+	body  goto 48
+	opt_body  goto 204
+	stmt  goto 4
+	stmt_loop  goto 9
+	stmt_if  goto 8
+	expr  goto 7
+	simple_expr  goto 17
+	through_dot  goto 36
+	new_object  goto 20
+	ternary  goto 37
+	stmt_tryCatch  goto 10
+	identifier  goto 41
+	goToLabel  goto 35
+
+state 198
+	opt_explicit_variables:  explicit_variables.    (24)
+	explicit_variables:  explicit_variables.Var identifiers semicolon 
+
+	Var  shift 205
+	.  reduce 24 (src line 179)
+
+
+state 199
+	explicit_variables:  Var.identifiers semicolon 
+
+	Identifier  shift 118
+	.  error
+
+	identifiers  goto 206
+
+state 200
+	ternary:  '?' '(' expr comma expr comma expr ')'.    (32)
+
+	.  reduce 32 (src line 223)
+
+
+state 201
+	opt_elseif_list:  ElseIf expr Then opt_body opt_elseif_list.    (29)
+
+	.  reduce 29 (src line 211)
+
+
+state 202
+	stmt_loop:  For Each Identifier In loopExp Loop $$33 opt_body EndLoop.    (34)
+
+	.  reduce 34 (src line 232)
+
+
+state 203
+	funcProc:  opt_directive Function Identifier '(' declarations_method_params ')' opt_export $$12 opt_explicit_variables.opt_body EndFunction 
+	opt_body: .    (15)
+
+	Identifier  shift 43
+	If  shift 22
+	For  shift 23
+	Break  shift 12
+	Not  shift 19
+	While  shift 24
+	GoToLabel  shift 40
+	Continue  shift 11
+	Try  shift 25
+	Number  shift 28
+	String  shift 27
+	New  shift 38
+	Return  shift 14
+	Throw  shift 13
+	True  shift 31
+	False  shift 32
+	Undefind  shift 34
+	Date  shift 33
+	GoTo  shift 21
+	Execute  shift 44
+	BuiltinFunction  shift 45
+	'+'  shift 30
+	'-'  shift 29
+	'('  shift 18
+	'?'  shift 42
+	.  reduce 15 (src line 151)
+
+	body  goto 48
+	opt_body  goto 207
+	stmt  goto 4
+	stmt_loop  goto 9
+	stmt_if  goto 8
+	expr  goto 7
+	simple_expr  goto 17
+	through_dot  goto 36
+	new_object  goto 20
+	ternary  goto 37
+	stmt_tryCatch  goto 10
+	identifier  goto 41
+	goToLabel  goto 35
+
+state 204
+	funcProc:  opt_directive Procedure Identifier '(' declarations_method_params ')' opt_export opt_explicit_variables opt_body.EndProcedure 
+	body:  opt_body.separator opt_stmt 
+
+	':'  shift 53
+	';'  shift 52
+	EndProcedure  shift 208
+	.  error
+
+	separator  goto 49
+	semicolon  goto 50
+	colon  goto 51
+
+state 205
+	explicit_variables:  explicit_variables Var.identifiers semicolon 
+
+	Identifier  shift 118
+	.  error
+
+	identifiers  goto 209
+
+state 206
+	explicit_variables:  Var identifiers.semicolon 
+	identifiers:  identifiers.comma Identifier 
+
+	';'  shift 52
+	','  shift 138
+	.  error
+
+	semicolon  goto 210
+	comma  goto 136
+
+state 207
+	funcProc:  opt_directive Function Identifier '(' declarations_method_params ')' opt_export $$12 opt_explicit_variables opt_body.EndFunction 
+	body:  opt_body.separator opt_stmt 
+
+	':'  shift 53
+	';'  shift 52
+	EndFunction  shift 211
+	.  error
+
+	separator  goto 49
+	semicolon  goto 50
+	colon  goto 51
+
+state 208
+	funcProc:  opt_directive Procedure Identifier '(' declarations_method_params ')' opt_export opt_explicit_variables opt_body EndProcedure.    (14)
+
+	.  reduce 14 (src line 145)
+
+
+state 209
+	explicit_variables:  explicit_variables Var identifiers.semicolon 
+	identifiers:  identifiers.comma Identifier 
+
+	';'  shift 52
+	','  shift 138
+	.  error
+
+	semicolon  goto 212
+	comma  goto 136
+
+state 210
+	explicit_variables:  Var identifiers semicolon.    (25)
+
+	.  reduce 25 (src line 182)
+
+
+state 211
+	funcProc:  opt_directive Function Identifier '(' declarations_method_params ')' opt_export $$12 opt_explicit_variables opt_body EndFunction.    (13)
+
+	.  reduce 13 (src line 140)
+
+
+state 212
+	explicit_variables:  explicit_variables Var identifiers semicolon.    (26)
+
+	.  reduce 26 (src line 189)
+
+
+67 terminals, 44 nonterminals
+113 grammar rules, 213/16000 states
+0 shift/reduce, 0 reduce/reduce conflicts reported
+93 working sets used
+memory: parser 690/240000
+144 extra closures
+1300 shift entries, 7 exceptions
+120 goto entries
+395 entries saved by goto default
+Optimizer space used: output 628/240000
+628 table entries, 112 zero
+maximum spread: 67, maximum offset: 209

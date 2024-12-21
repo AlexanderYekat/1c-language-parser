@@ -1,14 +1,12 @@
 package ast
 
 import (
-	"bytes"
 	"fmt"
 	"strconv"
 	"strings"
 	"time"
 	"unicode"
 	"unicode/utf8"
-	"unsafe"
 )
 
 //go:generate mockgen -source=$GOFILE -destination=./mock/mock.go
@@ -72,6 +70,7 @@ var (
 		"не":                Not,
 		"экспорт":           Export,
 		"выполнить":         Execute,
+		"выполнитьобработкуоповещения": BuiltinFunction,
 		//"вычислить":         Eval,
 		// "массив":            Array,
 		// "структура":         Struct,
@@ -425,37 +424,6 @@ func extractDigits(str string) string {
 	return string(result)
 }
 
-func fastToLower_old(s string) string {
-	rs := bytes.NewBuffer(make([]byte, 0, len(s)))
-	for _, rn := range s {
-		switch {
-		case (rn >= 'А' && rn <= 'Я') || (rn >= 'A' && rn <= 'Z'):
-			rs.WriteRune(rn + 0x20)
-		case rn == 'Ё':
-			rs.WriteRune('ё')
-		default:
-			rs.WriteRune(rn)
-		}
-	}
-	return rs.String()
-}
-
 func fastToLower(s string) string {
-	b := []byte(s)
-	for i, r := range s {
-		switch {
-		case r >= 'A' && r <= 'Z':
-			b[i] = s[i] + ('a' - 'A')
-		case r >= 'А' && r <= 'Я':
-			if s[i] == 208 && r > 'П' { // от "П" и дальше
-				b[i], b[i+1] = b[i]+1, s[i+1]-('а'-'А')
-			} else {
-				b[i+1] = s[i+1] + ('а' - 'А')
-			}
-		case r == 'Ё':
-			b[i], b[i+1] = 209, 145
-		}
-	}
-
-	return unsafe.String(unsafe.SliceData(b), len(b))
+	return strings.ToLower(s)
 }

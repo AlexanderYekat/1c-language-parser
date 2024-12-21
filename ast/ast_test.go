@@ -479,7 +479,7 @@ func TestParseIF(t *testing.T) {
 		assert.NoError(t, err)
 	})
 	t.Run("pass", func(t *testing.T) {
-		code := `Процедура ПодключитьВнешнююОбработку() 
+		code := `Процедура Подклю��итьВнешнююОбработку() 
 					Если в = 1 И (а = 1 или у = 3) Тогда
 						Если в = 1 или у = 3 Тогда
 
@@ -944,7 +944,7 @@ func TestTryCatch(t *testing.T) {
 							ВызватьИсключение("dsdsd dsds");	  
 							f = 0;
 							f = 0		
-						Исключение
+						Исключен��е
 							а = 1+1;
 							а = 1+1;
 							ВызватьИсключение;  // в блоке Исключение можно вызывать без параметров
@@ -1371,7 +1371,7 @@ func TestParseFunctionProcedure(t *testing.T) {
 		})
 		t.Run("through_dot pass", func(t *testing.T) {
 			code := `Процедура ЗагрузитьОбъекты(Задание, Отказ = Ложь) Экспорт
-						Перем СоответствиеРеквизитовШапки;
+						Перем СоответствиеРеквизитовШ��пки;
 					
 						Организация  = Задание.Организация.ВыполнитьМетодСПараметрами(1, "ав", авава);
 						Организация  = Задание.Организация.ВыполнитьМетодБезПараметров();
@@ -1390,7 +1390,7 @@ func TestParseFunctionProcedure(t *testing.T) {
 	})
 	t.Run("many", func(t *testing.T) {
 		code := `&Насервере
-				Процедура ПодключитьВнешнююОбработку() 
+				Процедура ПодключитьВнешнююО��работку() 
 					Возврат
 				КонецПроцедуры
 
@@ -1610,12 +1610,12 @@ func TestParseAST(t *testing.T) {
 		ОткрытьСправку(НавигационнаяСсылка);
 		Возврат;
 	КонецЕсли;
-КонецПроцедуры
 
-Если Оповещение <> Неопределено Тогда 
-			ПриложениеЗапущено = Истина;
-			ВыполнитьОбработкуОповещения(Оповещение, ПриложениеЗапущено);
-		КонецЕсли;`
+    Если Оповещение <> Неопределено Тогда 
+        ПриложениеЗапущено = Истина;
+        ВыполнитьОбработкуОповещения(Оповещение, ПриложениеЗапущено);
+    КонецЕсли;
+КонецПроцедуры`
 
 	a := NewAST(code)
 	err := a.Parse()
@@ -1754,7 +1754,7 @@ func TestPrint(t *testing.T) {
 func BenchmarkString(b *testing.B) {
 	b.Run("string", func(b *testing.B) {
 		for i := 0; i < b.N; i++ {
-			test("rdedfs dfdf dsfd rdedfs dfdf dsfdrdedfs dfdf dsfdrdedfs dfdf dsfdrdedfs rdedfs dfdf dsfd rdedfs dfdf dsfdrdedfs dfdf dsfdrdedfs dfdf dsfdrdedfs dfdf dsfdrdedfs dfdf dsfd rdedfs dfdf dsfdrdedfs dfdf dsfdrdedfs dfdf dsfdrdedfs dfdf dsfd dfdf dsfd")
+			test("rdedfs dfdf dsfd rdedfs dfdf dsfdrdedfs dfdf dsfdrdedfs dfdf dsfdrdedfs dfdf dsfdrdedfs rdedfs dfdf dsfd rdedfs dfdf dsfdrdedfs dfdf dsfdrdedfs dfdf dsfdrdedfs dfdf dsfdrdedfs dfdf dsfd rdedfs dfdf dsfdrdedfs dfdf dsfdrdedfs dfdf dsfdrdedfs dfdf dsfd dfdf dsfd")
 		}
 	})
 	b.Run("ptr string", func(b *testing.B) {

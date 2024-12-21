@@ -64,7 +64,7 @@ package ast
 }
 
 %token<token> Directive Identifier Procedure Var EndProcedure If Then ElseIf Else EndIf For Each In To Loop EndLoop Break Not ValueParam While GoToLabel
-%token<token> Continue Try Catch EndTry Number String New Function EndFunction Return Throw NeEq Le Ge Or And True False Undefind Export Date GoTo Execute
+%token<token> Continue Try Catch EndTry Number String New Function EndFunction Return Throw NeEq Le Ge Or And True False Undefind Export Date GoTo Execute BuiltinFunction
 
 
 //%right '='
@@ -287,6 +287,7 @@ identifier: Identifier { $$ = VarStatement{ Name: $1.literal } }
         | identifier '[' expr ']' { $$ = ItemStatement{ Object: $1, Item: $3 } }
         | Execute execute_param { $$ = MethodStatement{ Name: $1.literal, Param: []Statement{$2} } }
         | Execute '(' expr ')' { $$ = MethodStatement{ Name: $1.literal, Param:  []Statement{$3} } }
+        | BuiltinFunction '(' exprs ')' { $$ = &BuiltinFunctionStatement{ Name: $1.literal, Param: $3 } }
 ;
 
 execute_param: String { $$ = $1.value  }

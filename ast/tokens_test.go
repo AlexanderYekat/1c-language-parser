@@ -3,12 +3,13 @@ package ast
 import (
 	"crypto/rand"
 	"fmt"
-	"github.com/LazarenkoA/1c-language-parser/ast/fast_tolower"
-	mock_ast "github.com/LazarenkoA/1c-language-parser/ast/mock"
-	"github.com/golang/mock/gomock"
 	"regexp"
 	"strings"
 	"testing"
+
+	"github.com/LazarenkoA/1c-language-parser/ast/fast_tolower"
+	mock_ast "github.com/LazarenkoA/1c-language-parser/ast/mock"
+	"github.com/golang/mock/gomock"
 
 	"github.com/stretchr/testify/assert"
 )
@@ -514,7 +515,7 @@ func Benchmark(b *testing.B) {
 		КонецЕсли;
 		
 		Возврат;
-	КонецЕсли;
+	��онецЕсли;
 	
 	Если ОбщегоНазначенияСлужебныйКлиент.ЭтоСсылкаНаСправку(НавигационнаяСсылка) Тогда 
 		ОткрытьСправку(НавигационнаяСсылка);
@@ -559,7 +560,7 @@ func Benchmark_fastToLower(b *testing.B) {
 	})
 	b.Run("fastToLower-old", func(b *testing.B) {
 		for i := 0; i < b.N; i++ {
-			fastToLower_old(str)
+			fastToLower(str)
 		}
 	})
 	b.Run("fastToLower", func(b *testing.B) {
@@ -579,4 +580,21 @@ func Test_fastToLower(t *testing.T) {
 
 	assert.Equal(t, fastToLower(str), strings.ToLower(str))
 	assert.Equal(t, fast_tolower.FastToLower(str), strings.ToLower(str))
+}
+
+func TestTokenizer_LongRussianIdentifiers(t *testing.T) {
+	cases := []struct {
+		input    string
+		expected string
+	}{
+		{"ВыполнитьОбработкуОповещения", "выполнитьобработкуоповещения"},
+		{"ПолучитьФормуВыбораИзСправочника", "получитьформувыбораизсправочника"},
+	}
+
+	for _, tc := range cases {
+		result := fastToLower(tc.input)
+		if result != tc.expected {
+			t.Errorf("fastToLower(%q) = %q; want %q", tc.input, result, tc.expected)
+		}
+	}
 }
