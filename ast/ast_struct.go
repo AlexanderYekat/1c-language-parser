@@ -1,6 +1,9 @@
 package ast
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 type StatementType int
 type OperationType int
@@ -169,6 +172,8 @@ type BuiltinFunctionStatement struct {
 	Param []Statement
 }
 
+var ierahiy = 0
+
 func (p *ParamStatement) Fill(valueParam *Token, identifier Token) *ParamStatement {
 	p.IsValue = valueParam != nil
 	p.Name = identifier.literal
@@ -268,10 +273,12 @@ func (o OperationType) String() string {
 }
 
 func (m ModuleStatement) Walk(callBack func(current *FunctionOrProcedure, statement *Statement)) {
+	fmt.Println("Walk ModuleStatement", m.Name)
 	StatementWalk(m.Body, callBack)
 }
 
 func StatementWalk(stm []Statement, callBack func(current *FunctionOrProcedure, statement *Statement)) {
+	fmt.Println("StatementWalk:", len(stm))
 	walkHelper(nil, stm, callBack)
 }
 
@@ -318,38 +325,57 @@ func (m *ModuleStatement) Append(item Statement, yylex yyLexer) {
 // }
 
 func walkHelper(parent *FunctionOrProcedure, statements []Statement, callBack func(current *FunctionOrProcedure, statement *Statement)) {
+	ierahiy = ierahiy + 1
+	otstup := strings.Repeat(" ", ierahiy)
+	fmt.Printf("%swalkHelper parent: %T %v %v\n", otstup, parent, parent, ierahiy)
+	fmt.Printf("%swalkHelper statements: %d %T %v\n", otstup, len(statements), statements, statements)
+	//fmt.Printf("walkHelper current: %T %v\n", current, current)
 	for i, item := range statements {
+		fmt.Printf("%swalkHelper item: %d %T %v\n", otstup, i, item, item)
 		switch v := item.(type) {
 		case *IfStatement:
+			fmt.Printf("%sIfStatement %v\n", otstup, v.Expression)
 			walkHelper(parent, []Statement{v.Expression}, callBack)
 			walkHelper(parent, v.TrueBlock, callBack)
 			walkHelper(parent, v.ElseBlock, callBack)
 			walkHelper(parent, v.IfElseBlock, callBack)
 		case TryStatement:
+			fmt.Printf("%sTryStatement\n", otstup)
 			walkHelper(parent, v.Body, callBack)
 			walkHelper(parent, v.Catch, callBack)
 		case *LoopStatement:
+			fmt.Printf("%sLoopStatement\n", otstup)
 			walkHelper(parent, v.Body, callBack)
 		case *FunctionOrProcedure:
+			fmt.Printf("%sFunctionOrProcedure\n", otstup)
 			walkHelper(v, v.Body, callBack)
 			parent = v
 		case MethodStatement:
+			fmt.Printf("%sMethodStatement\n", otstup)
 			walkHelper(parent, v.Param, callBack)
 		//case CallChainStatement:
 		//	walkHelper(parent, []Statement{v.Unit}, callBack)
 		case *ExpStatement:
+			fmt.Printf("%sExpStatement\n", otstup)
 			walkHelper(parent, []Statement{v.Right}, callBack)
 			walkHelper(parent, []Statement{v.Left}, callBack)
 		case TernaryStatement:
+			fmt.Printf("%sTernaryStatement\n", otstup)
 			walkHelper(parent, []Statement{v.Expression}, callBack)
 			walkHelper(parent, []Statement{v.TrueBlock}, callBack)
 			walkHelper(parent, []Statement{v.ElseBlock}, callBack)
 		case *ReturnStatement:
+			fmt.Printf("%sReturnStatement\n", otstup)
 			walkHelper(parent, []Statement{v.Param}, callBack)
-		case BuiltinFunctionStatement:
+		case *BuiltinFunctionStatement:
+			fmt.Printf("%sBuiltinFunctionStatement %v %d\n", otstup, v.Name, len(v.Param))
 			walkHelper(parent, v.Param, callBack)
+		default:
+			fmt.Printf("%sdefault %T %v\n", otstup, v, v)
 		}
-
+		fmt.Printf("%scallBack %T %v\n", otstup, parent, statements[i])
+		fmt.Printf("%sstatements[i] %T %v\n", otstup, statements[i], &statements[i])
+		fmt.Printf("%sstatements[i] %T\n", otstup, *(&statements[i]))
 		callBack(parent, &statements[i])
 	}
 }

@@ -5,10 +5,11 @@ package ast
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/pkg/errors"
 	"reflect"
 	"strings"
 	"sync/atomic"
+
+	"github.com/pkg/errors"
 )
 
 type AstNode struct {
@@ -27,6 +28,7 @@ var (
 )
 
 func NewAST(code string) *AstNode {
+	//fmt.Println("NewAST", code)
 	return &AstNode{
 		code: code,
 	}

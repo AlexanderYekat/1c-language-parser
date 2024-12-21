@@ -133,9 +133,12 @@ func (t *Token) next() (int, string, error) {
 		literal := t.scanIdentifier()
 		lowLit := fastToLower(literal)
 
+		fmt.Println("lowLit", lowLit)
 		if tName, ok := tokens[lowLit]; ok && !t.prevDot {
+			fmt.Println("tName", tName)
 			return tName, literal, nil
 		} else {
+			fmt.Println("Identifier", literal)
 			return Identifier, literal, nil
 		}
 	case let == '.':

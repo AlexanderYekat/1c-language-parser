@@ -1,0 +1,109 @@
+******code*******
+&НаКлиенте
+Процедура КомандаВыполнитьКоманду(Команда)                    
+	ПослеВыполненияРасчета(2, НЕОПРЕДЕЛЕНО);
+	//ОповещенияПослеРачсета = Новый ОписаниеОповещения("ПослеВыполненияРасчета", ЭтотОбъект);
+	//ВыполнитьОбработкуОповещения(ОповещенияПослеРачсета, 10);
+КонецПроцедуры //КомандаВыполнитьКоманду      
+
+&НаКлиенте
+Процедура ПослеВыполненияРасчета(Резульат, Параметры) экспорт
+	Сообщить("Результат расчета="+СокрЛП(Резульат));
+конецПроцедуры //
+
+******output*******
+lowLit процедура
+tName 57348
+lowLit командавыполнитькоманду
+Identifier КомандаВыполнитьКоманду
+lowLit команда
+Identifier Команда
+lowLit послевыполнениярасчета
+Identifier ПослеВыполненияРасчета
+lowLit неопределено
+tName 57385
+lowLit конецпроцедуры
+tName 57350
+lowLit процедура
+tName 57348
+lowLit послевыполнениярасчета
+Identifier ПослеВыполненияРасчета
+lowLit резульат
+Identifier Резульат
+lowLit параметры
+Identifier Параметры
+lowLit экспорт
+tName 57386
+lowLit сообщить
+Identifier Сообщить
+lowLit сокрлп
+Identifier СокрЛП
+lowLit резульат
+Identifier Резульат
+lowLit конецпроцедуры
+tName 57350
+{"Name":"","Body":[{"ExplicitVariables":{},"Name":"КомандаВыполнитьКоманду","Directive":"\u0026НаКлиенте","Body":[{"Name":"ПослеВыполненияРасчета","Param":[2,{}]}],"Params":[{"Name":"Команда"}],"Type":1,"Export":false},{"ExplicitVariables":{},"Name":"ПослеВыполненияРасчета","Directive":"\u0026НаКлиенте","Body":[{"Name":"Сообщить","Param":[{"Left":"Результат расчета=","Right":{"Name":"СокрЛП","Param":[{"Name":"Резульат"}]},"Operation":0}]}],"Params":[{"Name":"Резульат"},{"Name":"Параметры"}],"Type":1,"Export":true}]}
+Walk ModuleStatement
+StatementWalk: 2
+ walkHelper parent: *ast.FunctionOrProcedure <nil> 1
+ walkHelper statements: 2 []ast.Statement [0x184e080 0x184e0c0]
+ walkHelper item: 0 *ast.FunctionOrProcedure &{map[] КомандаВыполнитьКоманду &НаКлиенте [{ПослеВыполненияРасчета [2 {}] {false false false}}] [{<nil> Команда false}] 1 false}
+ FunctionOrProcedure
+  walkHelper parent: *ast.FunctionOrProcedure &{map[] КомандаВыполнитьКоманду &НаКлиенте [{ПослеВыполненияРасчета [2 {}] {false false false}}] [{<nil> Команда false}] 1 false} 2
+  walkHelper statements: 1 []ast.Statement [{ПослеВыполненияРасчета [2 {}] {false false false}}]
+  walkHelper item: 0 ast.	 {ПослеВыполненияРасчета [2 {}] {false false false}}
+  MethodStatement
+   walkHelper parent: *ast.FunctionOrProcedure &{map[] КомандаВыполнитьКоманду &НаКлиенте [{ПослеВыполненияРасчета [2 {}] {false false false}}] [{<nil> Команда false}] 1 false} 3
+   walkHelper statements: 2 []ast.Statement [2 {}]
+   walkHelper item: 0 float64 2
+   callBack *ast.FunctionOrProcedure 2
+Walk FunctionOrProcedure КомандаВыполнитьКоманду
+Walk statement 0x18080c0
+   walkHelper item: 1 ast.UndefinedStatement {}
+   callBack *ast.FunctionOrProcedure {}
+Walk FunctionOrProcedure КомандаВыполнитьКоманду
+Walk statement 0x18080c8
+  callBack *ast.FunctionOrProcedure {ПослеВыполненияРасчета [2 {}] {false false false}}
+Walk FunctionOrProcedure КомандаВыполнитьКоманду
+Walk statement 0x18280f0
+ callBack *ast.FunctionOrProcedure &{map[] КомандаВыполнитьКоманду &НаКлиенте [{ПослеВыполненияРасчета [2 {}] {false false false}}] [{<nil> Команда false}] 1 false}
+Walk FunctionOrProcedure КомандаВыполнитьКоманду
+Walk statement 0x18080e0
+ walkHelper item: 1 *ast.FunctionOrProcedure &{map[] ПослеВыполненияРасчета &НаКлиенте [{Сообщить [0x18502d0] {false false false}}] [{<nil> Резульат false} {<nil> Параметры false}] 1 true}
+ FunctionOrProcedure
+    walkHelper parent: *ast.FunctionOrProcedure &{map[] ПослеВыполненияРасчета &НаКлиенте [{Сообщить [0x18502d0] {false false false}}] [{<nil> Резульат false} {<nil> Параметры false}] 1 true} 4
+    walkHelper statements: 1 []ast.Statement [{Сообщить [0x18502d0] {false false false}}]
+    walkHelper item: 0 ast.MethodStatement {Сообщить [0x18502d0] {false false false}}
+    MethodStatement
+     walkHelper parent: *ast.FunctionOrProcedure &{map[] ПослеВыполненияРасчета &НаКлиенте [{Сообщить [0x18502d0] {false false false}}] [{<nil> Резульат false} {<nil> Параметры false}] 1 true} 5
+     walkHelper statements: 1 []ast.Statement [0x18502d0]
+     walkHelper item: 0 *ast.ExpStatement &{Результат расчета= {СокрЛП [{Резульат {false false false}}] {false false false}} + {false false false}}
+     ExpStatement
+      walkHelper parent: *ast.FunctionOrProcedure &{map[] ПослеВыполненияРасчета &НаКлиенте [{Сообщить [0x18502d0] {false false false}}] [{<nil> Резульат false} {<nil> Параметры false}] 1 true} 6
+      walkHelper statements: 1 []ast.Statement [{СокрЛП [{Резульат {false false false}}] {false false false}}]
+      walkHelper item: 0 ast.MethodStatement {СокрЛП [{Резульат {false false false}}] {false false false}}
+      MethodStatement
+       walkHelper parent: *ast.FunctionOrProcedure &{map[] ПослеВыполненияРасчета &НаКлиенте [{Сообщить [0x18502d0] {false false false}}] [{<nil> Резульат false} {<nil> Параметры false}] 1 true} 7
+       walkHelper statements: 1 []ast.Statement [{Резульат {false false false}}] 
+       walkHelper item: 0 ast.VarStatement {Резульат {false false false}}        
+       callBack *ast.FunctionOrProcedure {Резульат {false false false}}
+Walk FunctionOrProcedure ПослеВыполненияРасчета
+Walk statement 0x1828180
+      callBack *ast.FunctionOrProcedure {СокрЛП [{Резульат {false false false}}] {false false false}}
+Walk FunctionOrProcedure ПослеВыполненияРасчета
+Walk statement 0x18287a8
+        walkHelper parent: *ast.FunctionOrProcedure &{map[] ПослеВыполненияРасчета &НаКлиенте [{Сообщить [0x18502d0] {false false false}}] [{<nil> Резульат false} {<nil> Параметры false}] 1 true} 8
+        walkHelper statements: 1 []ast.Statement [Результат расчета=]
+        walkHelper item: 0 string Результат расчета=
+        callBack *ast.FunctionOrProcedure Результат расчета=
+Walk FunctionOrProcedure ПослеВыполненияРасчета
+Walk statement 0x1828848
+     callBack *ast.FunctionOrProcedure &{Результат расчета= {СокрЛП [{Резульат {false false false}}] {false false false}} + {false false false}}
+Walk FunctionOrProcedure ПослеВыполненияРасчета
+Walk statement 0x1828188
+    callBack *ast.FunctionOrProcedure {Сообщить [0x18502d0] {false false false}} 
+Walk FunctionOrProcedure ПослеВыполненияРасчета
+Walk statement 0x1828190
+ callBack *ast.FunctionOrProcedure &{map[] ПослеВыполненияРасчета &НаКлиенте [{Сообщить [0x18502d0] {false false false}}] [{<nil> Резульат false} {<nil> Параметры false}] 1 true}
+Walk FunctionOrProcedure ПослеВыполненияРасчета
+Walk statement 0x18080e8
